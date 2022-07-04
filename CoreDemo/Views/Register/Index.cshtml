@@ -18,29 +18,29 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adınız Soyadınız</label>
-                            @Html.TextBoxFor(x=>x.WriterName)
-                            @Html.ValidationMessageFor(x=>x.WriterName)
+                            @Html.TextBoxFor(x=>x.WriterName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x=>x.WriterName,"",new {@class="text-danger" }) @*mesajı arka plandan aldığımız için ikinci parametre kısmını boş bırakabiliriz.*@
 
                             @*<input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">*@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Mail Adresi</label>
-                            @Html.TextBoxFor(x => x.WriterMail)
-                            @Html.ValidationMessageFor(x => x.WriterMail)
+                            @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.WriterMail, "", new { @class = "text-danger" })
                             @*<input type="email" class="form-control" name="WriterMail" id="validationDefault02" placeholder="" required="">*@
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Şifre</label>
-                            @Html.TextBoxFor(x => x.WriterPassword)
-                            @Html.ValidationMessageFor(x => x.WriterPassword)
+                            @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
                             @*<input type="password" class="form-control" name="WriterPassword" id="password1" placeholder="" required="">*@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Görsel Dosya Yolu</label>
-                            @Html.TextBoxFor(x => x.WriterImage)
-                            @Html.ValidationMessageFor(x => x.WriterImage)
+                            @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.WriterImage, "", new { @class = "text-danger" })
                             @*<input type="text" class="form-control" name="WriterImage" id="password2" placeholder="" required="">*@
                         </div>
 
@@ -56,8 +56,9 @@
     </div>
     <br />
     <script>
+       /* https://sweetalert.js.org/guides/ */
         $('#btn1').click(function () {
-            swal("Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz. Şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veri tabanlarımızda saklanmaktadır.");
+            swal("Site Kbul Şartları","Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz. Şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veri tabanlarımızda saklanmaktadır.");
         });
     </script>
 </section>
