@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace CoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
             //proje seviyesinde Authorization
             services.AddMvc(config =>
             {
@@ -35,6 +37,16 @@ namespace CoreDemo
                 config.Filters.Add(new AuthorizeFilter(policy));
                 
             });
+
+            //Siteye üye olmadan diðer sayfalara eriþim yapamaz. Diðer sayfalara gitmek istediðinde karþýsýna giriþ yapma ekraný gelir.
+            services.AddMvc();
+            services.AddAuthentication(
+                CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(x=>
+                {
+                    x.LoginPath = "/Login/Index";
+                }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +66,10 @@ namespace CoreDemo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseRouting();
 
