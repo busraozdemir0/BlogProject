@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.ViewComponents.Comment
 {
-    
-
     public class CommentListByBlog:ViewComponent
     {
         CommentManager cm = new CommentManager(new EfCommentRepository());
