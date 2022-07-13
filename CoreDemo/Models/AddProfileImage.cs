@@ -14,6 +14,7 @@ namespace CoreDemo.Models
         public IFormFile WriterImage { get; set; }
         public string WriterMail { get; set; }
         public string WriterPassword { get; set; }
+        public string ConfirmPassword { get; set; }
         public bool WriterStatus { get; set; }
     }
 }

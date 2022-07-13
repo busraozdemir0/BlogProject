@@ -57,14 +57,16 @@ namespace CoreDemo.Controllers
         {
             WriterValidator wl = new WriterValidator();
             ValidationResult results = wl.Validate(p);
-            if(results.IsValid)
+            if (results.IsValid)
             {
+                p.WriterStatus = true;
+                p.WriterAbout = "Deneme Test";
                 wm.TUpdate(p);
-                return RedirectToAction("Index","Dashboard");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {
-                foreach(var item in results.Errors)
+                foreach (var item in results.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
@@ -82,7 +84,7 @@ namespace CoreDemo.Controllers
         public IActionResult WriterAdd(AddProfileImage p)
         {
             Writer w = new Writer();
-            if(p.WriterImage!=null)
+            if (p.WriterImage != null)
             {
                 var extension = Path.GetExtension(p.WriterImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
@@ -94,10 +96,12 @@ namespace CoreDemo.Controllers
             w.WriterMail = p.WriterMail;
             w.WriterName = p.WriterName;
             w.WriterPassword = p.WriterPassword;
+            w.ConfirmPassword = p.ConfirmPassword;
             w.WriterStatus = true;
             w.WriterAbout = p.WriterAbout;
             wm.TAdd(w);
             return RedirectToAction("Index", "Dashboard");
+
         }
     }
 }
