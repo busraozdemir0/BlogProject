@@ -34,7 +34,7 @@ namespace CoreDemo.Controllers
                 var useridentity = new ClaimsIdentity(claims,"a"); //Burada ikinci parametrede vereceğimiz herhangi string ifade belirtilen talepler ve kimlik doğrulama türüyle sınıfının yeni bir örneğini ClaimsIdentity başlatır.
                 ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
                 await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Writer");
+                return RedirectToAction("Index", "DashBoard");
             }
             else
             {
