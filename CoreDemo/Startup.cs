@@ -57,6 +57,15 @@ namespace CoreDemo
                     x.LoginPath = "/Login/Index";
                 }
                 );
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+
+                options.LoginPath = "/Login/Index/";
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

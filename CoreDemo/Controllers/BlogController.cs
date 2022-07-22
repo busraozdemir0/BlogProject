@@ -14,16 +14,20 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
+
+        
         public IActionResult Index()
         {
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
+       // [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.i = id; //İD'leri gönderebilmek için
@@ -32,7 +36,8 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             var values=bm.GetListWithCategoryByWriterBm(writerID);
             return View(values);
@@ -55,7 +60,8 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog p)
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
@@ -100,11 +106,11 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog p)
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var blogvalue = bm.TGetById(p.BlogID);
             p.WriterID = writerID;
-            p.BlogCreateDate = DateTime.Parse(blogvalue.BlogCreateDate.ToShortDateString()); //Güncellendikten sonra tarihi aynı kalması için
+            p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); //Güncellendikten sonra tarihi aynı kalması için
             p.BlogStatus = true;    
             bm.TUpdate(p);
             return RedirectToAction("BlogListByWriter");
