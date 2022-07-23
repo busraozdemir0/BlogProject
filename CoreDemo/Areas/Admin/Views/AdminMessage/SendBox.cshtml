@@ -1,7 +1,8 @@
 ﻿@using EntityLayer.Concrete
 @model List<Message2>
+
 @{
-    ViewData["Title"] = "Inbox";
+    ViewData["Title"] = "SendBox";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
@@ -51,7 +52,7 @@
                         </div>
                     </form>
                     <h2>
-                        Gelen Kutusu (0)
+                        Giden Kutusu (0)
                     </h2>
                     <div class="mail-tools tooltip-demo m-t-md">
                         <div class="btn-group float-right">
@@ -70,16 +71,16 @@
 
                     <table class="table table-hover table-mail">
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach (var item in Model)
                             {
-                            <tr class="read">
-                                <td class="check-mail">
-                                    <input type="checkbox" class="i-checks">
-                                </td>
-                                <td class="mail-ontact"><a href="mail_detail.html">@item.SenderUser.WriterName</a></td>
-                                <td class="mail-subject"><a href="mail_detail.html">@item.Subject</a></td>
-                                <td class="text-right mail-date">@item.MessageDate</td>
-                            </tr>
+                                <tr class="read">
+                                    <td class="check-mail">
+                                        <input type="checkbox" class="i-checks">
+                                    </td>
+                                    <td class="mail-ontact"><a href="mail_detail.html">@item.ReceiverUser.WriterName</a></td>
+                                    <td class="mail-subject"><a href="mail_detail.html">@item.Subject</a></td>
+                                    <td class="text-right mail-date">@item.MessageDate</td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -89,3 +90,6 @@
     </div>
 </body>
 </html>
+
+
+
