@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLayer", "CoreLayer\CoreLayer.csproj", "{0B041604-8449-461D-B372-D80EB30FACEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApiDemo", "BlogApiDemo\BlogApiDemo.csproj", "{97161D7B-405E-40A4-A23B-39608B207C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApiDemo", "BlogApiDemo\BlogApiDemo.csproj", "{97161D7B-405E-40A4-A23B-39608B207C8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt_core_proje_kampi", "jwt_core_proje_kampi\jwt_core_proje_kampi.csproj", "{FE648DFF-AD83-46B8-9894-4A22D35B4E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{97161D7B-405E-40A4-A23B-39608B207C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97161D7B-405E-40A4-A23B-39608B207C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97161D7B-405E-40A4-A23B-39608B207C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE648DFF-AD83-46B8-9894-4A22D35B4E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE648DFF-AD83-46B8-9894-4A22D35B4E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE648DFF-AD83-46B8-9894-4A22D35B4E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE648DFF-AD83-46B8-9894-4A22D35B4E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
