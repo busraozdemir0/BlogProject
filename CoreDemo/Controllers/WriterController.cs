@@ -69,17 +69,26 @@ namespace CoreDemo.Controllers
             UserUpdateViewModel model = new UserUpdateViewModel();
             model.mail = values.Email;
             model.namesurname = values.NameSurname;
-            model.imageurl = values.ImageUrl;
             model.username = values.UserName;
             return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
+            Writer w = new Writer();
+            if (model.image != null)
+            {
+                var extension = Path.GetExtension(model.image.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                model.image.CopyTo(stream);
+                w.WriterImage = newimagename;
+            }
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             values.NameSurname = model.namesurname;
-            values.ImageUrl = model.imageurl;
             values.Email = model.mail;
+            values.ImageUrl = model.image.ToString();
             values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.password);
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");         
