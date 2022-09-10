@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="wwwroot\WriterImageFiles\" />
+    <Folder Include="wwwroot\BlogImageFiles\" />
   </ItemGroup>
 
 </Project>

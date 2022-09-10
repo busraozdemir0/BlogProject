@@ -8,9 +8,10 @@
     @foreach (var item in Model)
     {
         <div class="media">
-            <img src="~/CoreBlogTema/images/t1.jpg" alt="" class="img-fluid" />
+            <img src="~/CoreBlogTema/images/kullanici.png" alt=""  width="100" height="100" />
             <div class="media-body">
                 <h5 class="mt-0">@item.CommentUserName</h5>
+                <h7 class="mt-0">@item.CommentTitle</h7>
                 <p>@item.CommentContent</p>
             </div>
         </div>

@@ -10,24 +10,32 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th> # </th>
+                                <th hidden> # </th>
                                 <th> Kategori Adı </th>
                                 <th> Durumu </th>
-                                <th> İşlemler </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                               <tr>
-                                    <td> @item.CategoryID</td>
+                                <tr>
+                                    <td hidden> @item.CategoryID</td>
                                     <td> @item.CategoryName </td>
-                                    <td> @item.CategoryStatus </td>
                                     <td>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                        @if (item.CategoryStatus)
+                                        {
+                                            <span class="badge badge-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-secondary">Pasif</span>
+                                        }
                                     </td>
+                                    @*<td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </td>*@
                                 </tr>
                             }
                         </tbody>

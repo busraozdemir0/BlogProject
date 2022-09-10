@@ -5,10 +5,12 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,14 +22,18 @@ namespace CoreDemo.Controllers
         BlogManager bm = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
+        private readonly IWebHostEnvironment _webHost;
+        public BlogController(IWebHostEnvironment webHost)
+        {
+            _webHost = webHost;
+        }
 
-        
         public IActionResult Index()
         {
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.i = id; //İD'leri gönderebilmek için
@@ -39,14 +45,14 @@ namespace CoreDemo.Controllers
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values=bm.GetListWithCategoryByWriterBm(writerID);
+            var values = bm.GetListWithCategoryByWriterBm(writerID);
             return View(values);
         }
         [HttpGet]
         public IActionResult BlogAdd()
         {
             //DropDownList ile kategorileri listeleyip bu listeden seçebilmek için
-           
+
             List<SelectListItem> categoryvalues = (from x in cm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -54,11 +60,11 @@ namespace CoreDemo.Controllers
                                                        Value = x.CategoryID.ToString()
                                                    }
                                                  ).ToList();
-            ViewBag.cv = categoryvalues;
+            ViewBag.list = categoryvalues;
             return View();
         }
         [HttpPost]
-        public IActionResult BlogAdd(Blog p)
+        public async Task<IActionResult> BlogAdd(Blog p)
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
@@ -68,8 +74,18 @@ namespace CoreDemo.Controllers
             if (results.IsValid)
             {
                 p.BlogStatus = true;
-                p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.WriterID = writerID;
+
+                string wwwRootPath = _webHost.WebRootPath;
+                string filename = Path.GetFileNameWithoutExtension(p.BlogImage.FileName);
+                string extension = Path.GetExtension(p.BlogImage.FileName);
+                p.BlogImageYol = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/BlogImageFiles/", filename);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await p.BlogImage.CopyToAsync(filestream);
+                }
                 bm.TAdd(p);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -100,19 +116,31 @@ namespace CoreDemo.Controllers
                                                        Value = x.CategoryID.ToString()
                                                    }
                                                  ).ToList();
-            ViewBag.cv = categoryvalues;
+            ViewBag.list = categoryvalues;
             return View(blogvalue);
         }
         [HttpPost]
-        public IActionResult EditBlog(Blog p)
-        {
+        public async Task<IActionResult> EditBlog(Blog p)
+        { 
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            p.WriterID = writerID;
-            p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); //Güncellendikten sonra tarihi aynı kalması için
-            p.BlogStatus = true;    
-            bm.TUpdate(p);
+            if (ModelState.IsValid)
+            {
+                p.WriterID = writerID;
+                //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); 
+                p.BlogStatus = true;
+                string wwwRootPath = _webHost.WebRootPath;
+                string filename = Path.GetFileNameWithoutExtension(p.BlogImage.FileName);
+                string extension = Path.GetExtension(p.BlogImage.FileName);
+                p.BlogImageYol = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/BlogImageFiles/", filename);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await p.BlogImage.CopyToAsync(filestream);
+                }
+                bm.TUpdate(p);
+            }
             return RedirectToAction("BlogListByWriter");
         }
 

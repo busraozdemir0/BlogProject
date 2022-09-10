@@ -3,18 +3,11 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <img alt="image" class="rounded-circle" src="~/admin/img/profile_small.jpg" />
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="image" class="rounded-circle" style="width:60px; height:70px" src="~/WriterImageFiles/busra.jpg" />
+                    <a href="#">
                         <span class="block m-t-xs font-bold">Büşra Özdemir</span>
-                        <span class="text-muted text-xs block">Yazılım Mühendisi<b class="caret"></b></span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                        <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                        <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
-                    </ul>
+                        <span class="text-muted text-xs block">Yazılım Mühendisi</span>
+                    </a> 
                 </div>
                 <div class="logo-element">
                     IN+
@@ -27,13 +20,13 @@
                 <a href="/Admin/Chart/Index/"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Grafikler</span>  </a>
             </li>
             <li>
-                <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mesajlar </span><span class="label label-warning float-right">0/0</span></a>
+                <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mesajlar</span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="/Admin/AdminMessage/Inbox/">Gelen Kutusu</a></li>
                     <li><a href="/Admin/AdminMessage/SendBox/">Giden Kutusu</a></li>
                     <li><a href="/Admin/AdminMessage/ComposeMessage/">Yeni Mesaj Oluştur</a></li>
                 </ul>
-            </li>          
+            </li>
             <li>
                 <a href="/Admin/Category/Index/"><i class="fa fa-group"></i> <span class="nav-label">Kategoriler</span>  </a>
             </li>
@@ -59,10 +52,14 @@
                 <a href="metrics.html"><i class="fa fa-address-book"></i> <span class="nav-label">Hakkımızda</span>  </a>
             </li>
             <li>
-                <a href="/Admin/Blog/ExportStaticExcelBlogList/"><i class="fa fa-flask"></i> <span class="nav-label">Statik Rapor</span></a>
+                <a href="mailbox.html"><i class="fa fa-flask"></i> <span class="nav-label">Raporlar</span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="/Admin/Blog/ExportStaticExcelBlogList/">Statik Rapor</a></li>
+                    <li><a href="/Admin/Blog/ExportDynamicExcelBlogList/">Dinamik Rapor</a></li>
+                </ul>
             </li>
             <li>
-                <a href="/Admin/Blog/ExportDynamicExcelBlogList/"><i class="fa fa-pencil"></i> <span class="nav-label">Dinamik Rapor</span></a>
+                <a href="/Blog/Index/"><i class="fa fa-sign-out"></i> <span class="nav-label">Siteye Git</span></a>
             </li>
             <li>
                 <a href="/Login/LogOut/"><i class="fa fa-close"></i> <span class="nav-label">Çıkış Yap</span></a>

@@ -29,7 +29,7 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <i class="far fa-calendar-alt"></i>@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
+                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
                                             </a>
                                         </li>
                                         <li class="mx-2">
@@ -60,7 +60,7 @@
 
                     @*@await Html.PartialAsync("~/Views/Comment/CommentListByBlog.cshtml")*@
 
-                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
+                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")@*Partial View oluşturup burada çağırıyoruz*@
 
                 </div>
 
@@ -72,51 +72,15 @@
                             <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="">
                         </div>
                         <h4>Mail Bültenine Abone Olun.</h4>
-                        @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml") @*Partial View oluşturup burada çağırıyoruz*@
+
+                        @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml") 
 
                         @await Component.InvokeAsync("CategoryList") @*Component View oluşturup burada çağırıyoruz*@
 
                         @await Component.InvokeAsync("WriterLastBlog")
-                        <div class="single-gd my-5 tech-btm">
-                            <h4>İlerlememiz</h4>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="single-gd tech-btm">
-                            <h4>Son Eklenen Post</h4>
-                            <div class="blog-grids">
-                                <div class="blog-grid-left">
-                                    <a href="single.html">
-                                        <img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="blog-grid-right">
 
-                                    <h5>
-                                        <a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
-                                    </h5>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("BlogLastPost")
+                        
                     </div>
 
                 </aside>

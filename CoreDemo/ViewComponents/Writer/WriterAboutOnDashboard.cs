@@ -14,18 +14,22 @@ namespace CoreDemo.ViewComponents.Writer
    
     public class WriterAboutOnDashboard:ViewComponent
     {
-        WriterManager writerManager = new WriterManager(new EfWriterRepository());      
-        
         Context c = new Context();
 
         public IViewComponentResult Invoke()
         {
             var userName = User.Identity.Name;
-            ViewBag.veri = userName;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = writerManager.GetWriterById(writerID);
-            return View(values);
+            ViewBag.kullanici = userName;
+            var userId = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var userMail = c.Users.Where(x => x.Id == userId).Select(y => y.Email).FirstOrDefault();
+            ViewBag.mail = userMail;
+            var userAbout = c.Users.Where(x => x.Id == userId).Select(y => y.UserAbout).FirstOrDefault();
+            ViewBag.about = userAbout;
+            var image = c.Users.Where(x => x.Id == userId).Select(y => y.ImagePath).FirstOrDefault();
+            ViewBag.resim = image;
+            var ad = c.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            ViewBag.adi = ad;
+            return View(userId);
         }
 
     }

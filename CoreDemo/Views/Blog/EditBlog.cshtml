@@ -4,28 +4,78 @@
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Blog Düzenleme Sayfası</h1>
-<br />
-@using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
-{
-    @Html.Label("Blog ID")
-    @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control" })
+@*<h1>Blog Düzenleme Sayfası</h1>
     <br />
-    @Html.Label("Blog Başlığı")
-    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
-    <br />
-    @Html.Label("Blog Thumbnail URL")
-    @Html.TextBoxFor(x => x.BlogThumbnailImage, new { @class = "form-control" })
-    <br />
-    @Html.Label("Blog Görseli")
-    @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
-    <br />
-    @Html.Label("Blog Kategori")
-    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
-    <br />
-    @Html.Label("Blog İçeriği")
-    @Html.TextAreaFor(x => x.BlogContent, 10, 3, new { @class = "form-control" })
-    <br />
-    <button class="btn btn-success">Güncelle</button>
-}
+    @using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
+    {
+        @Html.Label("Blog ID")
+        @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control" })
+        <br />
+        @Html.Label("Blog Başlığı")
+        @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+        <br />
+        @Html.Label("Blog Görseli")
+        @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
+        <br />
+        @Html.Label("Blog Kategori")
+        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+        <br />
+        @Html.Label("Blog İçeriği")
+        @Html.TextAreaFor(x => x.BlogContent, 10, 3, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    }*@
 
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Blog Düzenleme Sayfası</h1>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label hidden for="exampleInputName1">Blog ID</label>
+                    <input hidden type="text" name="BlogID" value="@Model.BlogID" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Blog Başlığı</label>
+                    <input type="text" name="BlogTitle" value="@Model.BlogTitle" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Blog İçeriği</label>
+                    @Html.TextAreaFor(x => x.BlogContent, 15, 3, new {@class="form-control"})
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Blog Tarihi</label>
+                    <input type="date" name="BlogCreateDate" value="@Model.BlogCreateDate" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Kategori</label>
+                    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.list, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Blog Resmi</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <div class="uneditable-input">
+                                        <i class="fas fa-file fileupload-exists"></i>
+                                        <span class="fileupload-preview"></span>
+                                    </div>
+                                    <span class="btn btn-default btn-file">
+
+                                        <span class="fileupload-new">Dosya Seçiniz</span>
+                                        <input type="file" name="BlogImage" required />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">Güncelle</button>
+                <button type="reset" class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>

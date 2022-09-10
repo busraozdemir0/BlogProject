@@ -129,7 +129,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -164,6 +164,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserAbout")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -194,14 +197,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("BlogCreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("BlogImage")
+                    b.Property<string>("BlogImageYol")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("BlogStatus")
                         .HasColumnType("bit");
-
-                    b.Property<string>("BlogThumbnailImage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BlogTitle")
                         .HasColumnType("nvarchar(max)");
@@ -496,7 +496,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("WriterAbout")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WriterImage")
+                    b.Property<string>("WriterImageYol")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterMail")

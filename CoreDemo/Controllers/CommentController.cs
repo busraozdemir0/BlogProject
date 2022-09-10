@@ -24,14 +24,24 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult PartialAddComment(Comment p)
+        public IActionResult PartialAddComment(Comment p)
         {
+            var blogid = p.BlogID;
             p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.CommentStatus = true;
-            p.BlogID = 2;
+            p.BlogID = blogid;
             cm.CommentAdd(p);
             return PartialView();
         }
+        //[HttpPost]
+        //public PartialViewResult PartialAddComment(Comment p)
+        //{
+        //    p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+        //    p.CommentStatus = true;
+        //    p.BlogID = 2;
+        //    cm.CommentAdd(p);
+        //    return PartialView();
+        //}
         public PartialViewResult CommentListByBlog(int id)
         {
             var values = cm.GetList(id);                        
