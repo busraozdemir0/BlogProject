@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -23,16 +24,39 @@ namespace CoreDemo.Controllers
         {
             return PartialView();
         }
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult PartialAddComment(Comment p)
+        public IActionResult PartialAddComment(Comment comment)
         {
-            var blogid = p.BlogID;
-            p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.CommentStatus = true;
-            p.BlogID = blogid;
-            cm.CommentAdd(p);
-            return PartialView();
+
+            var username = User.Identity.Name;
+            Context c = new Context();
+            comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            comment.CommentStatus = true;
+            comment.CommentUserName = username;
+
+            cm.CommentAdd(comment);
+            return RedirectToAction("BlogReadAll", "Blog", new { id = comment.BlogID });
+
         }
+        //[HttpGet]
+        //public PartialViewResult PartialAddComment()
+        //{
+
+        //    return PartialView();
+        //}
+        //[HttpPost]
+        //public IActionResult PartialAddComment(Comment p)
+        //{
+
+
+
+        //    p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+        //    p.CommentStatus = true;
+
+        //    cm.CommentAdd(p);
+        //    return PartialView();
+        //}
         //[HttpPost]
         //public PartialViewResult PartialAddComment(Comment p)
         //{
@@ -44,8 +68,8 @@ namespace CoreDemo.Controllers
         //}
         public PartialViewResult CommentListByBlog(int id)
         {
-            var values = cm.GetList(id);                        
-            return PartialView(values);                      
+            var values = cm.GetList(id);
+            return PartialView(values);
         }
     }
 }

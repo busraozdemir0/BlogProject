@@ -16,6 +16,8 @@ namespace EntityLayer.Concrete
         public string ImagePath { get; set; }
         [NotMapped]
         public IFormFile Image { get; set; }
-       
+        [NotMapped]
+        public List<Blog> Blogs { get; set; }
+
     }
 }

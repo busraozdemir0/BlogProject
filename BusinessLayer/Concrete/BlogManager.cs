@@ -49,7 +49,7 @@ namespace BusinessLayer.Concrete
         }
         public List<Blog> GetBlogListByWriter(int id)
         {
-            return _blogDal.GetListAll(x=>x.WriterID==id);
+            return _blogDal.GetListAll(x=>x.AppUserId==id);
         }
 
         public void TAdd(Blog t)

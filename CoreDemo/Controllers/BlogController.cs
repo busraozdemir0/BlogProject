@@ -36,7 +36,7 @@ namespace CoreDemo.Controllers
         // [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
-            ViewBag.i = id; //İD'leri gönderebilmek için
+            ViewBag.id = id; //İD'leri gönderebilmek için
             var values = bm.GetBlogByID(id);
             return View(values);
         }
@@ -44,7 +44,7 @@ namespace CoreDemo.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var writerID = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
             var values = bm.GetListWithCategoryByWriterBm(writerID);
             return View(values);
         }
@@ -68,14 +68,15 @@ namespace CoreDemo.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var userid = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
             {
                 p.BlogStatus = true;
                 //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.WriterID = writerID;
+                p.AppUserId = userid;
 
                 string wwwRootPath = _webHost.WebRootPath;
                 string filename = Path.GetFileNameWithoutExtension(p.BlogImage.FileName);
@@ -124,10 +125,11 @@ namespace CoreDemo.Controllers
         { 
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var userid = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                p.WriterID = writerID;
+                p.AppUserId = userid;
                 //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); 
                 p.BlogStatus = true;
                 string wwwRootPath = _webHost.WebRootPath;

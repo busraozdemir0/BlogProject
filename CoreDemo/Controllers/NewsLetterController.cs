@@ -20,10 +20,11 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpPost]
-        public IActionResult SubscribeMail(NewsLetter p)
+        public PartialViewResult SubscribeMail(NewsLetter p)
         {
             p.MailStatus = true;
             nm.AddNewsLetter(p);
+            Response.Redirect("/BlogReadAll/Index", true); //abone olunca başka sayfaya gitmemesi için
             return PartialView();
         }
     }

@@ -22,7 +22,7 @@
                             <div class="b-grid-top">
                                 <div class="blog_info_left_grid">
                                     <a href="single.html">
-                                        <img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
+                                        <img src="~/BlogImageFiles/@item.BlogImageYol" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="blog-info-middle">
@@ -56,11 +56,11 @@
                             <a href="/Blog/Index/" class="btn btn-primary read-m">Blog Listesi</a>
                         </div>
                     }
-                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.i })  @* tıkladığımız değere göre viewbag ile id gönderdik *@
+                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.id })  @* tıkladığımız değere göre viewbag ile id gönderdik *@
 
                     @*@await Html.PartialAsync("~/Views/Comment/CommentListByBlog.cshtml")*@
 
-                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")@*Partial View oluşturup burada çağırıyoruz*@
+                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml",new { id = ViewBag.c })
 
                 </div>
 

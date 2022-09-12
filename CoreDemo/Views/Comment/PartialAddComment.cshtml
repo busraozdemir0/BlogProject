@@ -1,12 +1,14 @@
 ﻿<div class="comment-top">
     <h4>Bir yorum yapın</h4>
     <div class="comment-bottom">
-        <form  method="post">
+        <form method="post">
+            <div class="col">
+                <input type="hidden" class="form-control" name="BlogID" placeholder="Blog id" value="@ViewBag.id" required="">
+            </div>
             <input class="form-control" id="txtad" type="text" name="CommentUserName" placeholder="Adınız Soyadınız" required="">
             <input class="form-control" id="txtkonu" type="text" name="CommentTitle" placeholder="Konu" required="">
 
             <textarea class="form-control" id="txtyorum" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
-            @*<button type="submit" class="btn btn-primary submit">Yorum Yap</button>*@
             <input type="submit" class="btn btn-success read-m" id="btn" value="Yorum Yap">
         </form>
     </div>

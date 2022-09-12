@@ -17,7 +17,7 @@
                     {
                         <div class="col-lg-4 card">
                             <a href="single.html">
-                                <img src=~/BlogImageFiles/@item.BlogImageYol class="card-img-top img-fluid" alt="">
+                                <img src="~/BlogImageFiles/@item.BlogImageYol" class="card-img-top img-fluid" style="width:370px;height:300px" alt="">
                             </a>
                             <div class="card-body">
                                 <ul class="blog-icons my-4">
@@ -41,7 +41,7 @@
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                                 </h5>
-                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,10).LastIndexOf(" "))... </p> @*SubString belli bir karaktere kadar alır*@
+                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,100).LastIndexOf(" "))... </p> @*SubString belli bir karaktere kadar alır*@
                                 <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
                             </div>
                         </div>

@@ -8,14 +8,14 @@
         <div class="blog-grids row mb-3">
             <div class="col-md-5 blog-grid-left">
                 <a href="/CoreBlogTema/BlogReadAll/@item.BlogID">
-                    <img src="@item.BlogImage" class="card-img-top img-fluid" alt="">
+                    <img src="~/BlogImageFiles/@item.BlogImageYol" class="card-img-top img-fluid" alt="">
                 </a>
             </div>
 
             <div class="col-md-7 blog-grid-right">
 
                 <h5>
-                    <a href="/CoreBlogTema/BlogReadAll/@item.BlogID">@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 50).LastIndexOf(" "))... </a>
+                    <a href="/CoreBlogTema/BlogReadAll/@item.BlogID">@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 30).LastIndexOf(" "))... </a>
                 </h5>
                 <div class="sub-meta">
                     <span>
