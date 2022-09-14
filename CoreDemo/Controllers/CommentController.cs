@@ -28,44 +28,24 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult PartialAddComment(Comment comment)
         {
-
+            var user = User.Identity.IsAuthenticated;
             var username = User.Identity.Name;
-            Context c = new Context();
-            comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            comment.CommentStatus = true;
-            comment.CommentUserName = username;
+            if (user == true)
+            {
+                Context c = new Context();
+                comment.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                comment.CommentStatus = true;
+                comment.CommentUserName = username;
 
-            cm.CommentAdd(comment);
-            return RedirectToAction("BlogReadAll", "Blog", new { id = comment.BlogID });
-
+                cm.CommentAdd(comment);
+                return RedirectToAction("BlogReadAll", "Blog", new { id = comment.BlogID });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
-        //[HttpGet]
-        //public PartialViewResult PartialAddComment()
-        //{
-
-        //    return PartialView();
-        //}
-        //[HttpPost]
-        //public IActionResult PartialAddComment(Comment p)
-        //{
-
-
-
-        //    p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-        //    p.CommentStatus = true;
-
-        //    cm.CommentAdd(p);
-        //    return PartialView();
-        //}
-        //[HttpPost]
-        //public PartialViewResult PartialAddComment(Comment p)
-        //{
-        //    p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-        //    p.CommentStatus = true;
-        //    p.BlogID = 2;
-        //    cm.CommentAdd(p);
-        //    return PartialView();
-        //}
+      
         public PartialViewResult CommentListByBlog(int id)
         {
             var values = cm.GetList(id);

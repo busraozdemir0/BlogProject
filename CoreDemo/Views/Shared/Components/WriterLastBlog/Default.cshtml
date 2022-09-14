@@ -8,13 +8,13 @@
       <div class="blog-grids row mb-3">
             <div class="col-md-5 blog-grid-left">
                 <a href="single.html">
-                    <img src="@item.BlogImage" class="img-fluid" alt="">
+                    <img src="~/BlogImageFiles/@item.BlogImageYol" class="img-fluid" style="width:150px;height:100px" alt="">
                 </a>
             </div>
             <div class="col-md-7 blog-grid-right">
-
+                <br />
                 <h5>
-                    <a href="single.html">@item.BlogTitle</a>
+                    <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                 </h5>
                 <div class="sub-meta">
                     <span>

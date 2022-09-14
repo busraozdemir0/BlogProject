@@ -19,16 +19,16 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = mm.GetInboxListByWriter(writerID);
+            var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            var values = mm.GetInboxListByWriter(userId);
             return View(values);
         }
         public IActionResult SendBox()
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = mm.GetSendBoxListByWriter(writerID);
+            var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            var values = mm.GetSendBoxListByWriter(userId);
             return View(values);
         }
         [HttpGet]
@@ -41,8 +41,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            p.SenderID = writerID;
+            var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            p.SenderID = userId;
             p.ReceiverID = 2;
             p.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.MessageStatus = true;

@@ -12,9 +12,11 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
         Context c = new Context();
         public IViewComponentResult Invoke()
         {
-            ViewBag.v1 = c.Admins.Where(x => x.AdminID==1).Select(y => y.Name).FirstOrDefault();
-            ViewBag.v2 = c.Admins.Where(x => x.AdminID == 1).Select(y => y.ImageURL).FirstOrDefault();
-            ViewBag.v3 = c.Admins.Where(x => x.AdminID == 1).Select(z => z.ShortDescription).FirstOrDefault();
+            var userName = User.Identity.Name;
+            var userId = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            ViewBag.v1 = c.Admins.Where(x => x.AdminID==userId).Select(y => y.Name).FirstOrDefault();
+            ViewBag.v2 = c.Admins.Where(x => x.AdminID == userId).Select(y => y.ImageURL).FirstOrDefault();
+            ViewBag.v3 = c.Admins.Where(x => x.AdminID == userId).Select(z => z.ShortDescription).FirstOrDefault();
             return View();
         }
     }

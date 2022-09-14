@@ -89,8 +89,9 @@ namespace CoreDemo.Controllers
             model.image_yol = imageyol;
             model.about = wabout;
 
-
             ViewBag.adsoyad = name;
+            ViewBag.yol = imageyol;
+
             return View(model);
         }
         [HttpPost]
@@ -100,7 +101,6 @@ namespace CoreDemo.Controllers
             var username = User.Identity.Name;
             var userid = context.Users.Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
             model.userId = userid;
-
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHost.WebRootPath;
@@ -132,76 +132,8 @@ namespace CoreDemo.Controllers
               
             }
 
-
-            //if (model.image != null)
-            //{
-            //    var extension = Path.GetExtension(model.image.FileName);
-            //    var newimagename = Guid.NewGuid() + extension;
-            //    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
-            //    var stream = new FileStream(location, FileMode.Create);
-            //    model.image.CopyTo(stream);
-            //  //  w.WriterImage = newimagename;
-            //}
-            //var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            //values.NameSurname = model.namesurname;
-            //values.Email = model.mail;
-            //values.ImageUrl = model.image.ToString();
-            //values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.password);
-            //var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
-        }
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult WriterAdd()
-        {
-            return View();
-        }
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> WriterAdd(UserAddViewModel model)
-        {
-            AppUser user = new AppUser();
-            Context context = new Context();
-            var username = User.Identity.Name;
-            var userid = context.Users.Where(x => x.UserName == username).Select(y => y.Id).FirstOrDefault();
-            model.userId = userid;
-            if (ModelState.IsValid)
-            {
-                string wwwRootPath = _webHost.WebRootPath;
-                string filename = Path.GetFileNameWithoutExtension(model.image.FileName);
-                string extension = Path.GetExtension(model.image.FileName);
-                model.image_yol = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/WriterImageFiles/", filename);
-                using (var filestream = new FileStream(path, FileMode.Create))
-                {
-                    await model.image.CopyToAsync(filestream);
-                }
-                user.Id = model.userId;
-                user.UserAbout = model.about;
-                user.ImagePath = model.image_yol;
-                await _userManager.CreateAsync(user);
-            }
+        }       
 
-
-            //Writer w = new Writer();
-            //if (p.WriterImage != null)
-            //{
-            //    var extension = Path.GetExtension(p.WriterImage.FileName);
-            //    var newimagename = Guid.NewGuid() + extension;
-            //    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
-            //    var stream = new FileStream(location, FileMode.Create);
-            //    p.WriterImage.CopyTo(stream);
-            //    //  w.WriterImage = newimagename;
-            //}
-            //w.WriterMail = p.WriterMail;
-            //w.WriterName = p.WriterName;
-            //w.WriterPassword = p.WriterPassword;
-            //w.ConfirmPassword = p.ConfirmPassword;
-            //w.WriterStatus = true;
-            //w.WriterAbout = p.WriterAbout;
-            //wm.TAdd(w);
-            return RedirectToAction("Index", "Dashboard");
-
-        }
     }
 }

@@ -21,16 +21,27 @@ namespace CoreDemo.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = mm.GetInboxListByWriter(writerID);
+            var userID = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+            var values = mm.GetInboxListByWriter(userID);
             return View(values);
         }
         public IActionResult SendBox()
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = mm.GetSendBoxListByWriter(writerID);
+            var userID = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+            var values = mm.GetSendBoxListByWriter(userID);
             return View(values);
         }
         public IActionResult MessageDetails(int id)

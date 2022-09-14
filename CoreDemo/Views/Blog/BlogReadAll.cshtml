@@ -21,7 +21,7 @@
                         <div class="blog-grid-top">
                             <div class="b-grid-top">
                                 <div class="blog_info_left_grid">
-                                    <a href="single.html">
+                                    <a href="/Blog/BlogReadAll/@item.BlogID">
                                         <img src="~/BlogImageFiles/@item.BlogImageYol" class="img-fluid" alt="">
                                     </a>
                                 </div>
@@ -39,7 +39,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i class="far fa-comment"></i> 0 Yorum
+                                                <i class="far fa-comment"></i> @ViewBag.yorumSayisi Yorum
                                             </a>
                                         </li>
 
@@ -48,7 +48,7 @@
                             </div>
 
                             <h3>
-                                <a href="single.html">@item.BlogTitle </a>
+                                <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle </a>
                             </h3>
                             <p>
                                 @item.BlogContent
@@ -57,8 +57,6 @@
                         </div>
                     }
                     @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.id })  @* tıkladığımız değere göre viewbag ile id gönderdik *@
-
-                    @*@await Html.PartialAsync("~/Views/Comment/CommentListByBlog.cshtml")*@
 
                     @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml",new { id = ViewBag.c })
 

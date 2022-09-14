@@ -1,9 +1,10 @@
 ﻿@using EntityLayer.Concrete
-@model List<Comment>
+@model Comment
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CommentUpdate";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+
 
 <!DOCTYPE html>
 <html>
@@ -41,27 +42,15 @@
                                     <th hidden>#</th>
                                     <th>Kullanıcı</th>
                                     <th>Başlık</th>
-                                    <th>Blog</th>
-                                    <th>Puan</th>
-                                    <th>Tarih</th>
-                                    <th>Sil</th>
-                                    <th>Düzenle</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
-                                {
-                                   <tr>
-                                        <th hidden>@item.CommentID</th>
-                                        <td>@item.CommentUserName</td>
-                                        <td>@item.CommentTitle</td>
-                                        <td>@item.Blog.BlogTitle</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i>@item.BlogScore </td>
-                                        <td>@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</td>
-                                       <td><a href="/Admin/AdminComment/CommentDelete/@item.CommentID" class="btn btn-outline-danger">Sil</a></td>
-                                       <td><a href="/Admin/AdminComment/CommentUpdate/@item.CommentID" class="btn btn-outline-success">Güncelle</a></td>
-                                   </tr>
-                                }
+                                    <tr>
+                                        <th hidden>@Model.CommentID</th>
+                                        <td>@Model.CommentUserName</td>
+                                        <td>@Model.CommentTitle</td>
+                                    </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -71,3 +60,5 @@
     </div>
 </body>
 </html>
+
+

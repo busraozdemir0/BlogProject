@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fab fa-linode"></i>WeBlog
                     </a>
                 </div>
-                @await Html.PartialAsync("Partial2") 
+                @await Html.PartialAsync("GirisKayitPartial") 
                 <div class="col-md-4 log-icons text-right">
 
                     <ul class="social_list1 mt-3">
@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
         </div>
-        @await Html.PartialAsync("Partial1") @*PartialView çağırabilmek için*@
+        @await Html.PartialAsync("HeaderPartial") @*PartialView çağırabilmek için*@
 
 
     </header>
@@ -89,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @RenderBody()
     <!--//main-->
     <!--footer-->
-    @await Html.PartialAsync("Partial3") 
+    @await Html.PartialAsync("FooterPartial") 
     <!---->
     <!-- js -->
     <script src="~/CoreBlogTema/js/jquery-2.2.3.min.js"></script>

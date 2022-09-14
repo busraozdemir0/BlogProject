@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,13 @@ namespace CoreDemo.Controllers
         [AllowAnonymous]
         public IActionResult AllNotification()
         {
+            Context c = new Context();
+            var userName = User.Identity.Name;
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
             var values = nm.GetList();
             return View(values);
         }

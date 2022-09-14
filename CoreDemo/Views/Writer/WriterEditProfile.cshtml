@@ -22,16 +22,17 @@
                         <input type="text" name="mail" value="@Model.mail" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail3">Yazar Hakkında</label>
-                        <textarea rows="10" cols="50" type="text" name="about" value="@Model.about" class="form-control"></textarea>
+                        <label for="exampleInputEmail3">Hakkında yazısı gir</label>
+                        @Html.TextAreaFor(x => x.about, 10, 50, new { @class = "form-control" })
+                        @*<textarea rows="10" cols="50" type="text" name="about" value="@Model.about" class="form-control"></textarea>*@
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail3">Yeni Şifreniz</label>
+                        <label for="exampleInputEmail3">Şifreni Değiştir</label>
                         <input type="password" name="password" value="" class="form-control" />
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            <label for="exampleInputEmail3">Profil Fotoğrafı</label>
+                            <label for="exampleInputEmail3">Profil Fotoğrafı yükle</label>
                             <div class="col-lg-8">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="input-append">

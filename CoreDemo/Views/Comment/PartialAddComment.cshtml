@@ -1,18 +1,23 @@
 ﻿<div class="comment-top">
     <h4>Bir yorum yapın</h4>
     <div class="comment-bottom">
-        <form method="post">
+        <form asp-action="PartialAddComment" asp-controller="Comment" method="post">
             <div class="col">
-                <input type="hidden" class="form-control" name="BlogID" placeholder="Blog id" value="@ViewBag.id" required="">
+                <input type="hidden" class="form-control" name="BlogID" placeholder="Blog id" value="@ViewBag.CommentId" required="">
             </div>
-            <input class="form-control" id="txtad" type="text" name="CommentUserName" placeholder="Adınız Soyadınız" required="">
-            <input class="form-control" id="txtkonu" type="text" name="CommentTitle" placeholder="Konu" required="">
+            @*<div class="col-7">
+                <input type="hidden" class="form-control" name="CommentUserName" placeholder="@ViewBag.user" value="@ViewBag.user" required="">
+            </div>*@
+            <input type="hidden" class="form-control" id="txtad" name="CommentUserName" placeholder="@ViewBag.user" required="">
+            <input type="text" class="form-control" id="txtkonu"  name="CommentTitle" placeholder="Konu" required="">
 
             <textarea class="form-control" id="txtyorum" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
             <input type="submit" class="btn btn-success read-m" id="btn" value="Yorum Yap">
         </form>
     </div>
 </div>
+
+@*---ajax ile yorum yapma---*@
 <script type="text/javascript">
 
     $("#btn").click(function () {

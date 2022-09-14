@@ -30,13 +30,23 @@ namespace CoreDemo.Controllers
 
         public IActionResult Index()
         {
+            var userName = User.Identity.Name;
+            var userId= c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var adSoyad= c.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            ViewBag.user = adSoyad;
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
         // [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
-            ViewBag.id = id; //İD'leri gönderebilmek için
+            ViewBag.id = id;
+            ViewBag.CommentId = id;
+            var username = User.Identity.Name;
+            ViewBag.user = username;
+            var comment = c.Comments.Where(x=>x.BlogID==id).Count().ToString();
+            ViewBag.yorumSayisi = comment;
+
             var values = bm.GetBlogByID(id);
             return View(values);
         }
@@ -44,8 +54,13 @@ namespace CoreDemo.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
-            var values = bm.GetListWithCategoryByWriterBm(writerID);
+            var userID = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var values = bm.GetListWithCategoryByWriterBm(userID);
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.Id == userID).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
             return View(values);
         }
         [HttpGet]
@@ -60,6 +75,12 @@ namespace CoreDemo.Controllers
                                                        Value = x.CategoryID.ToString()
                                                    }
                                                  ).ToList();
+            var userName = User.Identity.Name;
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
             ViewBag.list = categoryvalues;
             return View();
         }
@@ -126,11 +147,9 @@ namespace CoreDemo.Controllers
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userid = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
-            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 p.AppUserId = userid;
-                //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); 
                 p.BlogStatus = true;
                 string wwwRootPath = _webHost.WebRootPath;
                 string filename = Path.GetFileNameWithoutExtension(p.BlogImage.FileName);
