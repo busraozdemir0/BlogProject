@@ -1,0 +1,43 @@
+﻿@using EntityLayer.Concrete
+@model Category
+@{
+    ViewData["Title"] = "CategoryUpdate";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <h1>Kategori Güncelleme Sayfası</h1>
+                    <br />
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label hidden for="exampleInputName1">Kategori ID</label>
+                            <input hidden type="text" name="CategoryID" value="@Model.CategoryID" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Kategori Adı</label>
+                            <input type="text" name="CategoryName" value="@Model.CategoryName" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label hidden for="exampleInputName1">Kategori Açıklaması</label>
+                            <input hidden type="text" name="CategoryDescription" value="@Model.CategoryDescription" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Kategori Durumu</label>
+                            <input type="text" name="CategoryStatus" value="@Model.CategoryStatus" class="form-control" readonly />
+                        </div> 
+                        <button type="submit" class="btn btn-info">Kaydet</button>
+                        <button type="reset" class="btn btn-danger">İptal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

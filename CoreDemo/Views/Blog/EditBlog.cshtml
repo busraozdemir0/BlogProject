@@ -4,28 +4,6 @@
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-@*<h1>Blog Düzenleme Sayfası</h1>
-    <br />
-    @using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
-    {
-        @Html.Label("Blog ID")
-        @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog Başlığı")
-        @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog Görseli")
-        @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog Kategori")
-        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
-        <br />
-        @Html.Label("Blog İçeriği")
-        @Html.TextAreaFor(x => x.BlogContent, 10, 3, new { @class = "form-control" })
-        <br />
-        <button class="btn btn-success">Güncelle</button>
-    }*@
-
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">

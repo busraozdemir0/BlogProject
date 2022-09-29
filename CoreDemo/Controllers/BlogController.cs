@@ -90,13 +90,11 @@ namespace CoreDemo.Controllers
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userid = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
-            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
             {
                 p.BlogStatus = true;
-                //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.AppUserId = userid;
 
                 string wwwRootPath = _webHost.WebRootPath;

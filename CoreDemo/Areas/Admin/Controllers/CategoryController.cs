@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
-
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -48,11 +48,39 @@ namespace CoreDemo.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult CategoryUpdate(int id)
+        {
+            var kategoriList = cm.TGetById(id);
+            return View(kategoriList);
+        }
+        [HttpPost]
+        public IActionResult CategoryUpdate(Category category)
+        {
+            cm.TUpdate(category);
+            return RedirectToAction("Index", "Category");
+        }
         public IActionResult CategoryDelete(int id)
         {
             var value = cm.TGetById(id);
             cm.TDelete(value);
             return RedirectToAction("Index");
+        }
+        public IActionResult CategoryActive(int id)
+        {
+            Context c = new Context();
+            var active = c.Categories.Find(id);
+            active.CategoryStatus = true;
+            c.SaveChanges();
+            return RedirectToAction("Index", "Category");
+        }
+        public IActionResult CategoryPassive(int id)
+        {
+            Context c = new Context();
+            var passive = c.Categories.Find(id);
+            passive.CategoryStatus = false;
+            c.SaveChanges();
+            return RedirectToAction("Index", "Category");
         }
     }
 }

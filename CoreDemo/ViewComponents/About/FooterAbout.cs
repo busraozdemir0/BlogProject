@@ -1,5 +1,4 @@
 ﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,20 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreDemo.Controllers
+namespace CoreDemo.ViewComponents.About
 {
-    public class AboutController : Controller
+    public class FooterAbout:ViewComponent
     {
         AboutManager aboutManager = new AboutManager(new EfAboutRepository());
-        public IActionResult Index()
+        public IViewComponentResult Invoke()
         {
             var values = aboutManager.GetList();
             return View(values);
         }
-        public PartialViewResult SocialMediaAbout()
-        {           
-            return PartialView();
-        }
-
     }
 }

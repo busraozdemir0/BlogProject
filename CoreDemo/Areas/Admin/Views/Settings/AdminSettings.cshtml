@@ -1,0 +1,62 @@
+﻿@model CoreDemo.Areas.Admin.Models.UserUpdateModel
+@{
+    ViewData["Title"] = "AdminSettings";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Admin Profil Bilgileri Düzenleme</h4>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Adı Soyadı</label>
+                    <input type="text" name="namesurname" value="@Model.namesurname" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Kullanıcı Adı</label>
+                    <input type="text" name="username" value="@Model.username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Mail Adresi</label>
+                    <input type="text" name="mail" value="@Model.mail" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkında yazısı gir</label>
+                    @Html.TextAreaFor(x => x.about, 10, 50, new { @class = "form-control" })
+                    @*<textarea rows="10" cols="50" type="text" name="about" value="@Model.about" class="form-control"></textarea>*@
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Şifreni Değiştir</label>
+                    <input type="password" name="password" value="" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Profil Fotoğrafı yükle</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <div class="uneditable-input">
+                                        <i class="fas fa-file-image"></i>
+                                        <span class="fileupload-preview"></span>
+                                    </div>
+                                    <span class="btn btn-default btn-file">
+
+                                        <span class="fileupload-new">Dosya Seçiniz</span>
+                                        <input type="file" name="image" required />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+                <button type="reset" class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

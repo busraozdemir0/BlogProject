@@ -18,10 +18,15 @@
                         <label for="exampleInputPassword1 mb-2">Şifre</label>
                         <input type="password" class="form-control" asp-for="@Model.password" id="exampleInputPassword1" placeholder="" required="">
                     </div>
-                    <div class="form-check mb-2">
+                    @*<div class="form-check mb-2">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Beni Hatırla</label>
+                        <label class="form-check-label" for="exampleCheck1">Beni Hatırla</label>                        
+                    </div>*@
+                <div class="row justify-content-between">
+                    <div class="form-group col-md-auto">
+                        <p class="text-muted text-center"><a href="#"> Şifremi Unuttum</a></p>
                     </div>
+                </div>
                     <button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
                     <p><a href="/RegisterUser/Index/">Bir hesabın yok mu?</a></p>
                 </form>

@@ -1,0 +1,12 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+    <h3>Hakkımızda</h3>
+    @foreach (var item in Model)
+    {
+<p>@item.AboutDetails.Substring(0, item.AboutDetails.Substring(0, 300).LastIndexOf(" "))...</p>
+    }
+    <div class="read">
+        <a href="/About/Index/" class="btn btn-primary read-m">Devamını Oku</a>
+    </div>
+</div>

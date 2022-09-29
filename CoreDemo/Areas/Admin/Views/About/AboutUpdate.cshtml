@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.About
+
+@{
+    ViewData["Title"] = "AboutUpdate";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Hakkımızda Düzenleme Sayfası</h1>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label hidden for="exampleInputName1">About ID</label>
+                    <input hidden type="text" name="AboutID" value="@Model.AboutID" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Hakkımızda İçerik</label>
+                    @Html.TextAreaFor(x => x.AboutDetails, 15, 3, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Hakkımızda Resim</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <div class="uneditable-input">
+                                        <i class="fas fa-file"></i>
+                                        <span class="fileupload-preview"></span>
+                                    </div>
+                                    <span class="btn btn-default btn-file">
+
+                                        <span class="fileupload-new">Dosya Seçiniz</span>
+                                        <input type="file" name="AboutImage" required />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                <button type="reset" class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

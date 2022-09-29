@@ -1,0 +1,37 @@
+﻿@using EntityLayer.Concrete
+@model About
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Hakkımızda Sayfası</h1>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                
+                    <div class="form-group">
+                        <label hidden for="exampleInputName1">About ID</label>
+                        <input hidden type="text" name="AboutID" value="@Model.AboutID" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Hakkımızda İçeriği</label>
+                        @Html.TextAreaFor(x => x.AboutDetails, 15, 3, new { @class = "form-control", disabled = "disabled" })
+                        @*<input type="text" name="AboutDetails" value="@Model.AboutDetails" height="500" width="100" class="form-control" disabled />*@
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Hakkımızda Resim Adı</label>
+                        <input type="text" name="AboutImageYol" value="@Model.AboutImageYol" class="form-control" disabled />
+                    </div>
+                    <a href="/Admin/About/AboutUpdate/@Model.AboutID" class="btn btn-primary">Düzenle</a>                
+
+            </form>
+        </div>
+    </div>
+</div>
+

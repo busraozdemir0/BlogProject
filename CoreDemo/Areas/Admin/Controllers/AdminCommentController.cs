@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var delete = commentManager.TGetById(id);
             commentManager.TDelete(delete);
-            return View("Index");
+            return RedirectToAction("Index","AdminComment");
         }
         [HttpGet]
         public IActionResult CommentUpdate(int id)
@@ -34,7 +35,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         public IActionResult CommentUpdate(Comment comment)
         {
             commentManager.TUpdate(comment);
-            return View();
+           
+            return RedirectToAction("Index", "AdminComment");
         }
     }
 }

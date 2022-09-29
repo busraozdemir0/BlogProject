@@ -13,47 +13,46 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox ">
-                    <div class="ibox-title">
-                        <h5>Yorumlar</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#" class="dropdown-item">Config option 1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
+                    <h1>Yorum Güncelleme Sayfası</h1>
+                    <br />
+                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label hidden for="exampleInputName1">Yorum ID</label>
+                            <input hidden type="text" name="CommentID" value="@Model.CommentID" class="form-control" />
                         </div>
-                    </div>
-                    <div class="ibox-content">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th hidden>#</th>
-                                    <th>Kullanıcı</th>
-                                    <th>Başlık</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                        <th hidden>@Model.CommentID</th>
-                                        <td>@Model.CommentUserName</td>
-                                        <td>@Model.CommentTitle</td>
-                                    </tr>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Yorum Yapanın Adı Soyadı</label>
+                            <input type="text" name="CommentUserName" value="@Model.CommentUserName" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label hidden for="exampleInputName1">Yorum Yapılan Blog</label>
+                            <input hidden type="text" name="BlogID" value="@Model.BlogID" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Yorum Tarihi</label>
+                            <input type="text" name="CommentDate" value="@Model.CommentDate" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Yorum Konusu</label>
+                            <input type="text" name="CommentTitle" value="@Model.CommentTitle" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Yorum</label>
+                            @Html.TextAreaFor(x => x.CommentContent, 5, 3, new { @class = "form-control" })
+                        </div>
 
-                            </tbody>
-                        </table>
-                    </div>
+                        <div class="form-group">
+                            <label hidden for="exampleInputEmail3">Yorum Durumu</label>
+                            <input hidden type="text" name="CommentStatus" value="@Model.CommentStatus" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label hidden for="exampleInputEmail3">Blog Skor</label>
+                            <input hidden type="text" name="BlogScore" value="@Model.BlogScore" class="form-control" readonly />
+                        </div>
+
+                        <button type="submit" class="btn btn-info">Kaydet</button>
+                        <button type="reset" class="btn btn-danger">İptal</button>
+                    </form>                
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ namespace CoreDemo.Areas.Admin.Controllers
     [Area("Admin")]
     public class WriterController : Controller
     {
+        //json formatında statik bir classa(WriterClass) writer ekleme, silme, güncelleme işlemleri
         public IActionResult Index()
         {
             return View();
