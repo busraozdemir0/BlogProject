@@ -1,0 +1,41 @@
+﻿@using EntityLayer.Concrete
+@model Address
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Adres Sayfası</h1>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label hidden for="exampleInputName1">Adres ID</label>
+                    <input hidden type="text" name="AdresId" value="@Model.AdresId" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Adres</label>
+                    @Html.TextAreaFor(x => x.Adres, 5, 2, new { @class = "form-control", disabled = "disabled" })
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Mail</label>
+                    <input type="text" name="Mail" value="@Model.Mail" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Telefon Numarası</label>
+                    <input type="text" name="TelNo" value="@Model.TelNo" class="form-control" disabled />
+                </div>
+                <a href="/Admin/Address/AddressUpdate/@Model.AdresId" class="btn btn-primary">Düzenle</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

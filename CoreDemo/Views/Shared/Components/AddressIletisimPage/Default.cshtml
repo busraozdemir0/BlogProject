@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Concrete.Address
+
+<div class="address row">
+
+    <div class="col-lg-4 address-grid">
+        <div class="row address-info">
+            <div class="col-md-4 address-left text-center">
+                <i class="far fa-map"></i>
+            </div>
+            <div class="col-md-8 address-right text-left">
+                <h6>Adres</h6>
+                <p>
+                    @Model.Adres
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 address-grid">
+        <div class="row address-info">
+            <div class="col-md-4 address-left text-center">
+                <i class="far fa-envelope"></i>
+            </div>
+            <div class="col-md-8 address-right text-left">
+                <h6>Mail</h6>
+                <p>
+                    <a href="mailto:@Model.Mail"> @Model.Mail</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-4 address-grid">
+        <div class="row address-info">
+            <div class="col-md-4 address-left text-center">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="col-md-8 address-right text-left">
+                <h6>Telefon</h6>
+                <p>+90 @Model.TelNo</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>

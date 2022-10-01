@@ -48,7 +48,7 @@ namespace CoreDemo.Areas.Admin.Controllers
                     await about.AboutImage.CopyToAsync(filestream);
                 }
                 aboutManager.TUpdate(about);
-                return RedirectToAction("AboutUpdate", "About");
+                return RedirectToAction("Index", "About");
             }
             return View();
         }
