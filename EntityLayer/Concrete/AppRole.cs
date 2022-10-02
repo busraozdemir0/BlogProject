@@ -9,5 +9,6 @@ namespace EntityLayer.Concrete
 {
     public class AppRole:IdentityRole<int>
     {
+        public int RolType { get; set; }
     }
 }

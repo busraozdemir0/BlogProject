@@ -1,6 +1,7 @@
 ﻿using CoreDemo.Models;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using EntityLayer.Enums;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -31,12 +32,32 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserSignInViewModel p)
         {
-            if(ModelState.IsValid)
+            Context context = new Context();
+            if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.username, p.password, false, true);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "DashBoard");
+                    var name = context.Users.Where(x => x.UserName == p.username).Select(y => y.NameSurname).FirstOrDefault();
+                    var userId = context.Users.Where(x => x.NameSurname == name).Select(y => y.Id).FirstOrDefault();
+
+                    var userRoleId = context.UserRoles.Where(x => x.UserId == userId).Select(y => y.RoleId).FirstOrDefault();
+                    var roleType = context.Roles.Where(x => x.Id == userRoleId).Select(y => y.RolType).FirstOrDefault();
+
+                    if (roleType == (int)UserRoleTypeEnum.Admin)
+                    {
+                        //return RedirectToAction("Index", "Widget", new { Areas = "Admin" });
+                        return RedirectToRoute(new { action = "Index", controller = "Widget", area = "Admin" });
+                    }
+                    else if (roleType == (int)UserRoleTypeEnum.Yazar)
+                    {
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+                    else if (roleType == (int)UserRoleTypeEnum.Üye)
+                    {
+                        return RedirectToAction("Index", "Blog");
+                    }
+
                 }
                 else
                 {

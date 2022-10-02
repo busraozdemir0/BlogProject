@@ -1,4 +1,5 @@
 ﻿using CoreDemo.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class WriterController : Controller
     {
         //json formatında statik bir classa(WriterClass) writer ekleme, silme, güncelleme işlemleri

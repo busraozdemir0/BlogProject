@@ -35,7 +35,7 @@ namespace CoreDemo.Controllers
             if (ModelState.IsValid)
             {
 
-                AppUser user = new AppUser() // 123456aA*
+                AppUser user = new AppUser()
                 {
                     Email = p.Mail,
                     UserName = p.UserName,
