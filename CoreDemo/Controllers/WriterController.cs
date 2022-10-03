@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize(Roles = "Admin,Yazar")]
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());

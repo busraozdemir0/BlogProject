@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,10 +47,9 @@ namespace CoreDemo.Controllers
 
                     if (roleType == (int)UserRoleTypeEnum.Admin)
                     {
-                        //return RedirectToAction("Index", "Widget", new { Areas = "Admin" });
                         return RedirectToRoute(new { action = "Index", controller = "Widget", area = "Admin" });
                     }
-                    else if (roleType == (int)UserRoleTypeEnum.Yazar)
+                    else if(roleType == (int)UserRoleTypeEnum.Yazar)
                     {
                         return RedirectToAction("Index", "Dashboard");
                     }
@@ -61,7 +61,8 @@ namespace CoreDemo.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Login");
+                    return RedirectToAction("Index", "Dashboard");
+                    //return RedirectToAction("Index", "Login");
                 }
             }
             return View();

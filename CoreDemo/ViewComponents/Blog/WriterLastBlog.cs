@@ -16,6 +16,7 @@ namespace CoreDemo.ViewComponents.Blog
         public IViewComponentResult Invoke()
         {
             Context context = new Context();
+            //adminin 3 blogunu getirme
             var rolId = context.Roles.Where(x => x.Name == "Admin").Select(y=>y.Id).FirstOrDefault();
             var userId = context.UserRoles.Where(x => x.RoleId == rolId).Select(y => y.UserId).FirstOrDefault();
             var values = bm.GetBlogListByWriter(userId);

@@ -33,13 +33,18 @@
             <form class="m-t" role="form" asp-action="Index">
 
                 <div class="form-group">
+                    <label for="exampleInputEmail1 mb-2">Kayıt Tipini Seçiniz<span class="text-color-danger">*</span></label>
+                    @Html.DropDownListFor(x => x.RolId, ViewBag.roller as List<SelectListItem>, new { @class = "form-control", id = "SinifSelectBox", @required = "required" })
+                </div>
+
+                <div class="form-group">
                     <span asp-validation-for="@Model.NameSurname" class="text-danger"></span>
                     <input type="text" class="form-control" asp-for="@Model.NameSurname" placeholder="Adınız Soyadınız">
                 </div>
 
                 <div class="form-group">
                     <span asp-validation-for="@Model.Mail" class="text-danger"></span>
-                    <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email" >
+                    <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email">
                 </div>
 
                 <div class="form-group">
@@ -59,7 +64,7 @@
 
                 <div class="form-group">
                     <span asp-validation-for="@Model.IsAcceptTheContract" class="text-danger"></span>
-                    <div class="checkbox i-checks"><label> <input type="checkbox" asp-for="IsAcceptTheContract"><i></i>Kullanım şartlarını okudum. Kabul ediyorum. </label></div>
+                    <div class="checkbox i-checks"><label> <input type="checkbox" asp-for="IsAcceptTheContract"><i></i> Kullanım şartlarını okudum. Kabul ediyorum. </label></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>

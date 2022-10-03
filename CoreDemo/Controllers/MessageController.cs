@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize(Roles = "Admin,Yazar")]
     public class MessageController : Controller
     {
         

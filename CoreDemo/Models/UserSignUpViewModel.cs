@@ -8,6 +8,8 @@ namespace CoreDemo.Models
 {
     public class UserSignUpViewModel
     {
+        public int RolId { get; set; }
+
         [Display(Name ="Ad Soyad")]
         [Required(ErrorMessage="Lütfen ad soyad giriniz!")]
         public string NameSurname { get; set; }

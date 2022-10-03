@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,11 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            Context context = new Context();
+            var userName = User.Identity.Name;
+            var userId = context.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var adSoyad = context.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            ViewBag.user = adSoyad;
             return View();
         }
         [HttpPost]

@@ -37,19 +37,22 @@ namespace CoreDemo.Controllers
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
-        // [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.id = id;
             ViewBag.CommentId = id;
-            var username = User.Identity.Name;
-            ViewBag.user = username;
+            Context context = new Context();
+            var userName = User.Identity.Name;
+            var userId = context.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var adSoyad = context.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            ViewBag.user = adSoyad;
             var comment = c.Comments.Where(x=>x.BlogID==id).Count().ToString();
             ViewBag.yorumSayisi = comment;
 
             var values = bm.GetBlogByID(id);
             return View(values);
         }
+        [Authorize(Roles = "Admin,Yazar")]
         public IActionResult BlogListByWriter()
         {
             var userName = User.Identity.Name;
@@ -63,6 +66,7 @@ namespace CoreDemo.Controllers
             ViewBag.yol = imgyol;
             return View(values);
         }
+        [Authorize(Roles = "Admin,Yazar")]
         [HttpGet]
         public IActionResult BlogAdd()
         {
@@ -81,9 +85,11 @@ namespace CoreDemo.Controllers
 
             ViewBag.adsoyad = name;
             ViewBag.yol = imgyol;
+
             ViewBag.list = categoryvalues;
             return View();
         }
+        [Authorize(Roles = "Admin,Yazar")]
         [HttpPost]
         public async Task<IActionResult> BlogAdd(Blog p)
         {
@@ -119,12 +125,14 @@ namespace CoreDemo.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Admin,Yazar")]
         public IActionResult DeleteBlog(int id)
         {
             var blogvalue = bm.TGetById(id);
             bm.TDelete(blogvalue);
             return RedirectToAction("BlogListByWriter");
         }
+        [Authorize(Roles = "Admin,Yazar")]
         [HttpGet]
         public IActionResult EditBlog(int id)
         {
@@ -137,8 +145,17 @@ namespace CoreDemo.Controllers
                                                    }
                                                  ).ToList();
             ViewBag.list = categoryvalues;
+
+            var userName = User.Identity.Name;
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+
             return View(blogvalue);
         }
+        [Authorize(Roles = "Admin,Yazar")]
         [HttpPost]
         public async Task<IActionResult> EditBlog(Blog p)
         { 

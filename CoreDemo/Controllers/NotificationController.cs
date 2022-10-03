@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize(Roles = "Admin,Yazar")]
     public class NotificationController : Controller
     {
         NotificationManager nm = new NotificationManager(new EfNotificationRepository());

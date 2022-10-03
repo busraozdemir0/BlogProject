@@ -39,6 +39,7 @@ namespace CoreDemo
 
             services.AddControllersWithViews();
             services.AddSession();
+
             //proje seviyesinde Authorization
             services.AddMvc(config =>
             {
@@ -62,7 +63,7 @@ namespace CoreDemo
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60); //siteye login olduktan 60 dk sonra otomatik çýkýþ yapar
                 options.AccessDeniedPath = new PathString("/Login/AccessDenied");
                 options.LoginPath = "/Login/Index/";
                 options.SlidingExpiration = true;
