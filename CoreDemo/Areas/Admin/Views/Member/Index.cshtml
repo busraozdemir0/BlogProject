@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h1>Üyeler</h1>
+<br />
+<table class="table table-hover">
+    <tr>
+        <th hidden>ID</th> 
+        <th>Adı Soyadı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Maili</th>
+        @*<th>Rolü</th>*@
+        <th>Sil</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th hidden>@item.Id </th> 
+            <td>@item.NameSurname </td>
+            <td>@item.UserName </td>
+            <td>@item.Email</td>
+            @*<td>
+                @if (item.AppRole)
+                {
+                    <span class="badge badge-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge badge-secondary">Pasif</span>
+                }
+
+            </td>*@
+            <td>@Html.ActionLink("Sil", "MemberDelete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+
+        </tr>
+    }
+</table>
+
+
+
