@@ -18,6 +18,8 @@ namespace EntityLayer.Concrete
         public IFormFile Image { get; set; }
         [NotMapped]
         public List<Blog> Blogs { get; set; }
+        public virtual ICollection<Message2> UserSender { get; set; }
+        public virtual ICollection<Message2> UserReceiver { get; set; }
 
     }
 }

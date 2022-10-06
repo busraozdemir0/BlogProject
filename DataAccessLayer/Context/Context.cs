@@ -32,13 +32,13 @@ namespace DataAccessLayer.Concrete
 
             modelBuilder.Entity<Message2>()
                 .HasOne(x => x.SenderUser)
-                .WithMany(y => y.WriterSender)
+                .WithMany(y => y.UserSender)
                 .HasForeignKey(z => z.SenderID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<Message2>()
                 .HasOne(x => x.ReceiverUser)
-                .WithMany(y => y.WriterReceiver)
+                .WithMany(y => y.UserReceiver)
                 .HasForeignKey(z => z.ReceiverID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 

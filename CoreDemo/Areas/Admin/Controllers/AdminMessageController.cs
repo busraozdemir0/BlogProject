@@ -19,14 +19,27 @@ namespace CoreDemo.Areas.Admin.Controllers
         Context c = new Context();
         public IActionResult Inbox()
         {
-            var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
-            var values = mm.GetInboxListByWriter(userId);
+            //var userName = User.Identity.Name;
+            //var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            //var values = mm.GetInboxListByWriter(userId);
+            var mesajSayisi = c.Contacts.Count().ToString();
+            ViewBag.gelenMesajSayisi = mesajSayisi;
+
+            var gidenMesajSayisi = c.Message2s.Count().ToString();
+            ViewBag.gidenMesajSayisi = gidenMesajSayisi;
+
+            var values = c.Contacts.ToList();
             return View(values);
         }
         public IActionResult SendBox()
         {
+            var mesajSayisi = c.Contacts.Count().ToString();
+            ViewBag.gelenMesajSayisi = mesajSayisi;
+
+            var gidenMesajSayisi = c.Message2s.Count().ToString();
+            ViewBag.gidenMesajSayisi = gidenMesajSayisi;
+
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
@@ -36,6 +49,12 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ComposeMessage()
         {
+            var mesajSayisi = c.Contacts.Count().ToString();
+            ViewBag.gelenMesajSayisi = mesajSayisi;
+
+            var gidenMesajSayisi = c.Message2s.Count().ToString();
+            ViewBag.gidenMesajSayisi = gidenMesajSayisi;
+
             return View();
         }
         [HttpPost]

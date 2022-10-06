@@ -22,5 +22,7 @@ namespace BusinessLayer.Concrete
         {
             _contactDal.Insert(contact);
         }
+
+
     }
 }
