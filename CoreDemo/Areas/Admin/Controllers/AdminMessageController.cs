@@ -70,5 +70,16 @@ namespace CoreDemo.Areas.Admin.Controllers
             mm.TAdd(p);
             return RedirectToAction("SendBox"); ;
         }
+        public IActionResult MessageDetail(int id)
+        {
+            var mesajSayisi = c.Contacts.Count().ToString();
+            ViewBag.gelenMesajSayisi = mesajSayisi;
+
+            var gidenMesajSayisi = c.Message2s.Count().ToString();
+            ViewBag.gidenMesajSayisi = gidenMesajSayisi;
+
+            var mesaj = c.Contacts.Find(id);
+            return View(mesaj);
+        }
     }
 }
