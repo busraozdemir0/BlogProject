@@ -81,5 +81,16 @@ namespace CoreDemo.Areas.Admin.Controllers
             var mesaj = c.Contacts.Find(id);
             return View(mesaj);
         }
+        public IActionResult SendMessageDetail(int id)
+        {
+            var mesajSayisi = c.Contacts.Count().ToString();
+            ViewBag.gelenMesajSayisi = mesajSayisi;
+
+            var gidenMesajSayisi = c.Message2s.Count().ToString();
+            ViewBag.gidenMesajSayisi = gidenMesajSayisi;
+
+            var mesaj = c.Message2s.Find(id);
+            return View(mesaj);
+        }
     }
 }

@@ -27,27 +27,34 @@
             <div class="contact_grid_right">
                 <form  method="post">
                     <div class="row contact_left_grid">
+                        <div class="contact-form-success alert alert-success d-none mt-4">
+                            <strong>Başarılı!</strong> Mesajınız gönderildi.
+                        </div>
+                        <div class="contact-form-error alert alert-danger d-none mt-4">
+                            <strong>Hata!</strong>Mesaj gönderilirken hata oluştu.
+                            <span class="mail-error-message text-1 d-block"></span>
+                        </div>
                         <div class="col-md-6 con-left">
                             <div class="form-group">
                                 <label for="validationCustom01 my-2">Adınız</label>
-                                <input class="form-control" type="text" name="ContactUserName" placeholder="" required="">
+                                <input class="form-control" type="text" name="ContactUserName" data-msg-required="Lütfen adınızı giriniz." placeholder="" required="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Mail Adresiniz</label>
-                                <input class="form-control" type="email" name="ContactMail" placeholder="" required="">
+                                <input class="form-control" type="email" name="ContactMail" data-msg-required="Lütfen mailinizi giriniz." data-msg-email="Lütfen geçerli bir email adresi giriniz." placeholder="" required="">
                             </div>
                             <div class="form-group">
                                 <label for="validationCustom03 my-2">Konu</label>
-                                <input class="form-control" type="text" name="ContactSubject" placeholder="" required="">
+                                <input class="form-control" type="text" name="ContactSubject" data-msg-required="Lütfen konuyu giriniz." placeholder="" required="">
                             </div>
                         </div>
                         <div class="col-md-6 con-right">
                             <div class="form-group">
                                 <label for="textarea">Mesajınız</label>
-                                <textarea id="textarea" name="ContactMessage" placeholder=""></textarea>
+                                <textarea id="textarea" name="ContactMessage" data-msg-required="Lütfen mesajınızı giriniz." placeholder="" required=""></textarea>
                             </div>
-                            <input class="form-control" type="submit" value="Gönder">
-
+                            <input class="form-control" type="submit" value="Gönder" data-loading-text="Gönderiliyor...">
+                            
                         </div>
                     </div>
                 </form>

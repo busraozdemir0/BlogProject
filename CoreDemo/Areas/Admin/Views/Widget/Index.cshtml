@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html>
-<body>           
+<body>
     <div class="wrapper wrapper-content animated fadeInRight">
         @await Component.InvokeAsync("Statistic1")
         @await Component.InvokeAsync("Statistic2")
@@ -19,7 +19,7 @@
                             <i class="fa fa-user fa-3x"></i>
                         </div>
                         <div class="col-9 text-right">
-                            <h2 class="font-bold">217</h2>
+                            <h2 class="font-bold">10</h2>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="widget style1 navy-bg">
                     <div class="row vertical-align">
                         <div class="col-3">
-                            <i class="fa fa-rss fa-3x"></i>
+                            <i class="fa fa-file-text fa-3x"></i>
                         </div>
                         <div class="col-9 text-right">
                             <h2 class="font-bold">10</h2>
@@ -86,8 +86,8 @@
             </div>
         </div>
         @await Component.InvokeAsync("Statistic4")
-        
-        <div class="row m-t-lg">
+
+        <!--<div class="row m-t-lg">
             <div class="col-lg-6">
                 <div class="ibox ">
 
@@ -152,118 +152,123 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-danger m-r-sm">12</button>
-                                    Toplam Mesajlar
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary m-r-sm">28</button>
-                                    Gönderiler
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-info m-r-sm">15</button>
-                                    Yorumlar
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-info m-r-sm">20</button>
-                                   Haberler
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-success m-r-sm">40</button>
-                                    Beğeniler
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger m-r-sm">30</button>
-                                    Bildirimler
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-warning m-r-sm">20</button>
-                                    Albümler
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-default m-r-sm">40</button>
-                                   Gruplar
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning m-r-sm">30</button>
-                                    İzinler
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="ibox-content text-center">
-                                <h1>Nicki Smith</h1>
-                                <div class="m-b-sm">
-                                    <img alt="image" class="rounded-circle" src="~/admin/img/a8.jpg">
-                                </div>
-                                <p class="font-bold">Consectetur adipisicing</p>
+            <div class="col-lg-6">-->
+                @*<div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-danger m-r-sm">12</button>
+                                        Toplam Mesajlar
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary m-r-sm">28</button>
+                                        Bloglar
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info m-r-sm">15</button>
+                                        Yorumlar
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-info m-r-sm">20</button>
+                                       Haberler
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success m-r-sm">40</button>
+                                        Beğeniler
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger m-r-sm">30</button>
+                                        Bildirimler
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-warning m-r-sm">20</button>
+                                        Albümler
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-default m-r-sm">40</button>
+                                       Gruplar
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning m-r-sm">30</button>
+                                        İzinler
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>*@
+                @*<div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="ibox-content text-center">
+                                    <h1>Nicki Smith</h1>
+                                    <div class="m-b-sm">
+                                        <img alt="image" class="rounded-circle" src="~/admin/img/a8.jpg">
+                                    </div>
+                                    <p class="font-bold">Consectetur adipisicing</p>
 
-                                <div class="text-center">
-                                    <a href="" class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                    <a href="" class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="ibox-content">
-                                <div>
-                                    <div>
-                                        <span>Memory</span>
-                                        <small class="float-right">10/200 GB</small>
-                                    </div>
-                                    <div class="progress progress-small">
-                                        <div style="width: 60%;" class="progress-bar"></div>
-                                    </div>
-
-                                    <div>
-                                        <span>Bandwidth</span>
-                                        <small class="float-right">20 GB</small>
-                                    </div>
-                                    <div class="progress progress-small">
-                                        <div style="width: 50%;" class="progress-bar"></div>
-                                    </div>
-
-                                    <div>
-                                        <span>Activity</span>
-                                        <small class="float-right">73%</small>
-                                    </div>
-                                    <div class="progress progress-small">
-                                        <div style="width: 40%;" class="progress-bar"></div>
-                                    </div>
-
-                                    <div>
-                                        <span>FTP</span>
-                                        <small class="float-right">400 GB</small>
-                                    </div>
-                                    <div class="progress progress-small">
-                                        <div style="width: 20%;" class="progress-bar progress-bar-danger"></div>
+                                    <div class="text-center">
+                                        <a href="" class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
+                                        <a href="" class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="ibox-content">
+                                    <div>
+                                        <div>
+                                            <span>Memory</span>
+                                            <small class="float-right">10/200 GB</small>
+                                        </div>
+                                        <div class="progress progress-small">
+                                            <div style="width: 60%;" class="progress-bar"></div>
+                                        </div>
+
+                                        <div>
+                                            <span>Bandwidth</span>
+                                            <small class="float-right">20 GB</small>
+                                        </div>
+                                        <div class="progress progress-small">
+                                            <div style="width: 50%;" class="progress-bar"></div>
+                                        </div>
+
+                                        <div>
+                                            <span>Activity</span>
+                                            <small class="float-right">73%</small>
+                                        </div>
+                                        <div class="progress progress-small">
+                                            <div style="width: 40%;" class="progress-bar"></div>
+                                        </div>
+
+                                        <div>
+                                            <span>FTP</span>
+                                            <small class="float-right">400 GB</small>
+                                        </div>
+                                        <div class="progress progress-small">
+                                            <div style="width: 20%;" class="progress-bar progress-bar-danger"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div>*@
+            <!--</div>
+        </div>-->
         <div class="row m-t-lg">
             <div class="col-lg-12">
                 <div class="ibox-content">
-                    <h2>Word map</h2>
-                    <small>This is simple example of map</small>
-                    <div id="world-map" style="height: 300px;"></div>
+                    <div class="contact-map inner-sec">
+                        <div class="contact-map inner-sec">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100949.24429313939!2d-122.44206553967531!3d37.75102885910819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1472190196783"
+                                    class="map" style="border: 0; height: 500px; width: 1175px" allowfullscreen="">
+
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -299,12 +304,13 @@
     <script src="~/admin/js/plugins/flot/jquery.flot.js"></script>
     <script src="~/admin/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="~/admin/js/plugins/flot/jquery.flot.resize.js"></script>
-    <script>$(document).ready(function(){
+    <script>
+    $(document).ready(function () {
             var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
             var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
 
             var data1 = [
-                { label: "Data 1", data: d1, color: '#17a084'},
+                { label: "Data 1", data: d1, color: '#17a084' },
                 { label: "Data 2", data: d2, color: '#127e68' }
             ];
             $.plot($("#flot-chart1"), data1, {
@@ -338,7 +344,7 @@
             });
 
             var data2 = [
-                { label: "Data 1", data: d1, color: '#19a0a1'}
+                { label: "Data 1", data: d1, color: '#19a0a1' }
             ];
             $.plot($("#flot-chart2"), data2, {
                 xaxis: {
@@ -371,7 +377,7 @@
             });
 
             var data3 = [
-                { label: "Data 1", data: d1, color: '#fbbe7b'},
+                { label: "Data 1", data: d1, color: '#fbbe7b' },
                 { label: "Data 2", data: d2, color: '#f8ac59' }
             ];
             $.plot($("#flot-chart3"), data3, {

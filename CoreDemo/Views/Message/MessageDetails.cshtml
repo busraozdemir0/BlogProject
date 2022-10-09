@@ -6,8 +6,7 @@
 
 <h1>Mesaj Detay Sayfası</h1>
 <br />
-@Html.Label("Mesaj ID")
-@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control", disabled = "disabled"}) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
+@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control", disabled = "disabled", hidden="true"}) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
 <br />
 @Html.Label("Mesaj Başlığı")
 @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" , disabled = "disabled" })

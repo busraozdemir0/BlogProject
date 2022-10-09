@@ -47,12 +47,30 @@ namespace CoreDemo.Controllers
         }
         public IActionResult MessageDetails(int id)
         {
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var userID = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+
             var value = mm.TGetById(id);            
             return View(value);
         }
         [HttpGet]
         public IActionResult SendMessage()
         {
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var userID = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+
             return View();
         }
         [HttpPost]
