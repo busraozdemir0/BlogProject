@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using CoreDemo.Areas.Admin.Models;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -91,6 +92,36 @@ namespace CoreDemo.Areas.Admin.Controllers
 
             var mesaj = c.Message2s.Find(id);
             return View(mesaj);
+        }
+        [HttpPost]
+        public IActionResult ContactMessageDelete(List<MesajlarDto> mesaj)
+        {
+            Context context = new Context();
+            List<MesajlarDto> silinecekMesajlar = mesaj.Where(x => x.Status == true).ToList();
+            foreach(var item in silinecekMesajlar)
+            {
+                var id = item.CheckboxId;
+                var silinecekMesaj = c.Contacts.Find(id);
+
+                context.Contacts.Remove(silinecekMesaj);
+                context.SaveChanges();
+            }
+            return Ok("Başarılı");        
+        }
+        [HttpPost]
+        public IActionResult MessageDelete(List<MesajlarDto> mesaj)
+        {
+            Context context = new Context();
+            List<MesajlarDto> silinecekMesajlar = mesaj.Where(x => x.Status == true).ToList();
+            foreach (var item in silinecekMesajlar)
+            {
+                var id = item.CheckboxId;
+                var silinecekMesaj = c.Message2s.Find(id);
+
+                mm.TDelete(silinecekMesaj);
+            }
+            return Ok("Başarılı");
+
         }
     }
 }
