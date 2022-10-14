@@ -78,13 +78,19 @@ namespace CoreDemo.Controllers
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            p.SenderID = writerID;
-            p.ReceiverID = 2;
+            var userID = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            p.SenderID = userID;
+            //p.ReceiverID = 2;
             p.MessageStatus = true;
             p.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             mm.TAdd(p);
             return RedirectToAction("InBox");
+        }
+        public IActionResult MessageDelete(int id)
+        {
+            var silinecekMesaj = mm.TGetById(id);
+            mm.TDelete(silinecekMesaj);
+            return RedirectToAction("Inbox","Message");
         }
     }
 }

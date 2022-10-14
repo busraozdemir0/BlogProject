@@ -9,8 +9,8 @@
 @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
 {
     @Html.Label("Alıcı")
-    @*@Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })*@
-    <input type="text" class="form-control" />
+    @Html.TextBoxFor(x => x.ReceiverUser.Email, new { @class = "form-control" })
+    @*<input type="text" class="form-control" />*@
     <br />
     @Html.Label("Konu")
     @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })   

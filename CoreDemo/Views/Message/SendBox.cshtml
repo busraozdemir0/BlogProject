@@ -6,25 +6,29 @@
 }
 
 <h1>Giden Kutusu</h1>
-<table class="table table-hover">
-    <tr>
-        <th>#</th>
-        <th>Konu</th>
-        <th>Alıcı</th>
-        <th>Tarih</th>
-        <th>Mesajı Aç</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<form method="post">
+    <table class="table table-hover">
         <tr>
-            <th>@item.MessageID </th>
-            <td>@item.Subject </td>
-            <td>@item.ReceiverUser.NameSurname </td>
-            <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy")) </td>
-            <td><a href="/Message/MessageDetails/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
+            <th hidden>#</th>
+            <th>Konu</th>
+            <th>Alıcı</th>
+            <th>Tarih</th>
+            <th>Mesajı Aç</th>
+            <th>Sil</th>
         </tr>
-    }
-</table>
-<a href="/Message/SendMessage/" class="btn btn-primary">Yeni Mesaj Oluştur</a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th hidden>@item.MessageID </th>
+                <td>@item.Subject </td>
+                <td>@item.ReceiverUser.NameSurname </td>
+                <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy")) </td>
+                <td><a href="/Message/MessageDetails/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
+                <td><a href="/Message/MessageDelete/@item.MessageID" class="btn btn-danger">Sil</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Message/SendMessage/" class="btn btn-primary">Yeni Mesaj Oluştur</a>
+</form>
 
 

@@ -6,9 +6,10 @@
     <div class="dropdown-divider"></div>
     @foreach (var item in Model)
     { 
-        <a class="dropdown-item preview-item">
+        <a class="dropdown-item preview-item" href="/Message/MessageDetails/@item.MessageID">
             <div class="preview-thumbnail">
-                <img src="@item.SenderUser.ImagePath" alt="image" class="profile-pic">
+                @*<img src="@item.SenderUser.ImagePath" alt="image" class="profile-pic">*@
+                <img src="~/WriterImageFiles/kullanıcı224433284.jpg" alt="image" class="profile-pic">
             </div>
             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                 <h6 class="preview-subject ellipsis mb-1 font-weight-normal">@item.SenderUser.NameSurname sana mesaj gönderdi.</h6>
@@ -16,5 +17,5 @@
             </div>
         </a>
     }
-    <h6 class="p-3 mb-0 text-center">3 Yeni Mesaj</h6>
+    <h6 class="p-3 mb-0 text-center">@ViewBag.mesajSayisi Yeni Mesaj</h6>
 </div>

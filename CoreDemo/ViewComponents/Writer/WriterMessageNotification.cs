@@ -17,8 +17,12 @@ namespace CoreDemo.ViewComponents.Writer
         {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = mm.GetInboxListByWriter(writerID);
+            var userID = c.Users.Where(x => x.UserName== userName).Select(y => y.Id).FirstOrDefault();
+            var values = mm.GetInboxListByWriter(userID);
+
+            var messages = c.Message2s.Where(x=>x.ReceiverID==userID).Count();
+            ViewBag.mesajSayisi = messages;
+
             return View(values);
         }
     }
