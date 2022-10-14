@@ -20,12 +20,12 @@
         </div>
         <div class="ad-inf-sec bg-light">
             <div class="container">
-           @await Component.InvokeAsync("AddressIletisimPage") 
+                @await Component.InvokeAsync("AddressIletisimPage")
             </div>
         </div>
         <div class="container">
             <div class="contact_grid_right">
-                <form  method="post">
+                <form method="post">
                     <div class="row contact_left_grid">
                         <div class="contact-form-success alert alert-success d-none mt-4">
                             <strong>Başarılı!</strong> Mesajınız gönderildi.
@@ -53,13 +53,24 @@
                                 <label for="textarea">Mesajınız</label>
                                 <textarea id="textarea" name="ContactMessage" data-msg-required="Lütfen mesajınızı giriniz." placeholder="" required=""></textarea>
                             </div>
-                            <input class="form-control" type="submit" value="Gönder" data-loading-text="Gönderiliyor...">
-                            
+                            @*<input class="form-control" type="submit" value="Gönder" data-loading-text="Gönderiliyor...">*@
+                            <button id="btn" type="submit" class="form-control btn btn-dark">Gönder</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                alert("Mesajınız başarıyla gönderildi.");
+            });
+        });
+
+    </script>
+
 </body>
 
