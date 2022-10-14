@@ -8,13 +8,16 @@
 <br />
 @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
 {
+    @Html.TextBoxFor(x => x.ReceiverUser.Id, new { @class = "form-control" ,hidden = "true" })
+    <br />
     @Html.Label("Alıcı")
     @Html.TextBoxFor(x => x.ReceiverUser.Email, new { @class = "form-control" })
     @*<input type="text" class="form-control" />*@
     <br />
     @Html.Label("Konu")
-    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })   
-    <br />  
+    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+    <br />
+
     @Html.Label("Mesajınız")
     @Html.TextAreaFor(x => x.MessageDetails, 15, 3, new { @class = "form-control" })
     <br />

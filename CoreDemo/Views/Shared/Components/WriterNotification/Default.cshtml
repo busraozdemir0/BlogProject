@@ -6,14 +6,14 @@
     @foreach (var item in Model.Where(x => x.NotificationStatus == true).OrderByDescending(x => x.NotificationID).Take(5))
     {
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item preview-item">
+        <a class="dropdown-item preview-item" href="/Notification/NotificationDetails/@item.NotificationID">
             <div class="preview-thumbnail">
                 <div class="@item.NotificationColor">
-                    <i class="@item.NotificationTypeSymbol"></i>
+                    <i class="fab fa-circle"></i>
                 </div>
             </div>
             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject font-weight-normal mb-1">@item.NotificationType</h6>
+                <h6 class="preview-subject font-weight-normal mb-1">@item.NotificationTitle</h6>
                 <p class="text-gray ellipsis mb-0"> @item.NotificationDetails</p>
                 <p>@item.NotificationDate.ToShortDateString()</p>
             </div>
@@ -21,5 +21,5 @@
     }
 
     <div class="dropdown-divider"></div>
-    <h6 class="p-3 mb-0 text-center">Tüm bildirimleri gör</h6>
+    <a href="/Notification/AllNotification/"><h6 class="p-3 mb-0 text-center">Tüm bildirimleri gör</h6></a>
 </div>

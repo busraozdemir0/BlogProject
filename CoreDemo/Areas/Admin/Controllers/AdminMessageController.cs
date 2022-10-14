@@ -64,8 +64,8 @@ namespace CoreDemo.Areas.Admin.Controllers
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
-            p.SenderID = userId;
-            p.ReceiverID = 2;
+            p.SenderUserId = userId;
+            p.ReceiverUserId = 2;
             p.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.MessageStatus = true;
             mm.TAdd(p);

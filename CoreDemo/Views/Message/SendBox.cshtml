@@ -21,7 +21,7 @@
             <tr>
                 <th hidden>@item.MessageID </th>
                 <td>@item.Subject </td>
-                <td>@item.ReceiverUser.NameSurname </td>
+                <td>@item.ReceiverUser.Email </td>
                 <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy")) </td>
                 <td><a href="/Message/MessageDetails/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
                 <td><a href="/Message/MessageDelete/@item.MessageID" class="btn btn-danger">Sil</a></td>

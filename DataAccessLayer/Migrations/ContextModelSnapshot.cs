@@ -398,39 +398,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
-                {
-                    b.Property<int>("MessageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("MessageDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MessageDetails")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("MessageStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("ReceiverID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SenderID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MessageID");
-
-                    b.HasIndex("ReceiverID");
-
-                    b.HasIndex("SenderID");
-
-                    b.ToTable("Message2s");
-                });
+           
 
             modelBuilder.Entity("EntityLayer.Concrete.NewsLetter", b =>
                 {
@@ -469,10 +437,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("NotificationStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("NotificationType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NotificationTypeSymbol")
+                    b.Property<string>("NotificationTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NotificationID");
@@ -674,20 +639,7 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("HomeTeam");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.AppUser", "ReceiverUser")
-                        .WithMany("UserReceiver")
-                        .HasForeignKey("ReceiverID");
-
-                    b.HasOne("EntityLayer.Concrete.AppUser", "SenderUser")
-                        .WithMany("UserSender")
-                        .HasForeignKey("SenderID");
-
-                    b.Navigation("ReceiverUser");
-
-                    b.Navigation("SenderUser");
-                });
+            
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {

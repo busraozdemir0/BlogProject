@@ -31,5 +31,19 @@ namespace CoreDemo.Controllers
             var values = nm.GetList();
             return View(values);
         }
+        public IActionResult NotificationDetails(int id)
+        {
+            Context c = new Context();
+            var userName = User.Identity.Name;
+            var name = c.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+
+            ViewBag.adsoyad = name;
+            ViewBag.yol = imgyol;
+
+            var notification = nm.TGetById(id);
+            return View(notification);
+        }
+
     }
 }

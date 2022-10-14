@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Notification
+@{
+    ViewData["Title"] = "NotificationDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Bildirim Detay Sayfası</h1>
+<br />
+@Html.TextBoxFor(x => x.NotificationID, new { @class = "form-control", disabled = "disabled", hidden = "true" }) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
+<br />
+@Html.Label("Bildirim Tarihi")
+@Html.TextBoxFor(x => x.NotificationDate, new { @class = "form-control", disabled = "disabled" })
+<br />
+@Html.Label("Bildirim Başlığı")
+@Html.TextBoxFor(x => x.NotificationTitle, new { @class = "form-control", disabled = "disabled" })
+<br />
+@Html.Label("Bildirim İçeriği")
+@Html.TextAreaFor(x => x.NotificationDetails, 10, 3, new { @class = "form-control", disabled = "disabled" })
+<br />
+
+
+

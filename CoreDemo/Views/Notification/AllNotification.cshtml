@@ -8,14 +8,14 @@
 <h1>Bildirimler</h1>
 <table class="table table-bordered">
     <tr>
-        <th>#</th>
+        <th hidden>#</th>
         <th>Bildirim</th>
         <th>Tarih</th>
     </tr>
     @foreach (var item in Model)
     {
 <tr>
-    <td>@item.NotificationID</td>
+    <td hidden>@item.NotificationID</td>
     <td>@item.NotificationDetails</td>
     <td>@item.NotificationDate.ToShortDateString()</td>
 </tr>

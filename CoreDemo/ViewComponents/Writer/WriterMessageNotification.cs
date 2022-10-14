@@ -20,7 +20,7 @@ namespace CoreDemo.ViewComponents.Writer
             var userID = c.Users.Where(x => x.UserName== userName).Select(y => y.Id).FirstOrDefault();
             var values = mm.GetInboxListByWriter(userID);
 
-            var messages = c.Message2s.Where(x=>x.ReceiverID==userID).Count();
+            var messages = c.Message2s.Where(x=>x.ReceiverUserId==userID).Count();
             ViewBag.mesajSayisi = messages;
 
             return View(values);

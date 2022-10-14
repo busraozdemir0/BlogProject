@@ -11,12 +11,14 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int MessageID { get; set; }
-        public int? SenderID { get; set; } //?->null dönebilir anlamında
-        public int? ReceiverID { get; set; }
         public string Subject { get; set; }
         public string MessageDetails { get; set; }
         public DateTime MessageDate { get; set; }
         public bool MessageStatus { get; set; }
+        public int SenderUserId { get; set; }
+        public string SenderUserEmail { get; set; }
+        public int ReceiverUserId { get; set; }
+        public string ReceiverUserEmail { get; set; }
         public AppUser SenderUser { get; set; }
         public AppUser ReceiverUser { get; set; }
     }
