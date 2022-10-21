@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.Notification
+
+@{
+    ViewData["Title"] = "NotificationUpdate";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Bildirim Düzenleme Sayfası</h1>
+            <br />
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label hidden for="exampleInputName1">Bildirim ID</label>
+                    <input hidden type="text" name="NotificationID" value="@Model.NotificationID" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Bildirim Başlığı</label>
+                    <input type="text" name="NotificationTitle" value="@Model.NotificationTitle" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Bildirim İçeriği</label>
+                    @Html.TextAreaFor(x => x.NotificationDetails, 10, 2, new { @class = "form-control" })
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                <button type="reset" class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

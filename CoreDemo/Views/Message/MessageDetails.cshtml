@@ -8,7 +8,7 @@
 <br />
 @Html.TextBoxFor(x => x.MessageID, new { @class = "form-control", disabled = "disabled", hidden = "true" }) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
 <br />
-<label class="font-weight-bold text-muted">Alıcı: <i class="fa-solid fa-angles-right"></i> @Model.ReceiverUserEmail</label>
+<label class="font-weight-bold text-muted">Alıcı: @Model.ReceiverUserEmail</label>
 <br />
 <br />
 @Html.Label("Mesaj Başlığı")

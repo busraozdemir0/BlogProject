@@ -12,14 +12,16 @@
         <th>Bildirim Başlığı</th>
         <th>Bildirim</th>
         <th>Tarih</th>
+        <th>Devamını Oku</th>
     </tr>
     @foreach (var item in Model)
     {
 <tr>
     <td hidden>@item.NotificationID</td>
     <td>@item.NotificationTitle</td>
-    <td>@item.NotificationDetails</td>
+    <td>@item.NotificationDetails.Substring(0, item.NotificationDetails.Substring(0, 15).LastIndexOf(" ")) ...</td>
     <td>@item.NotificationDate.ToShortDateString()</td>
+    <td><a href="/Notification/NotificationDetails/@item.NotificationID" class="btn btn-outline-primary">Devamını Oku</a></td>
 </tr>
     }
 </table>
