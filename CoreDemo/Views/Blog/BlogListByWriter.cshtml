@@ -14,6 +14,7 @@
         <th>Oluşturma Tarihi</th>
         <th>Kategori</th>
         <th>Durum</th>
+        <th>Beğeni</th>
         <th>Sil</th>
         <th>Düzenle</th>
 
@@ -36,6 +37,7 @@
                 }
 
             </td>
+            <td>@item.Begeni_Sayisi</td>
             <td>@Html.ActionLink("SİL", "DeleteBlog", new { id=item.BlogID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
             <td><a href="/Blog/EditBlog/@item.BlogID" class="btn btn-warning">Düzenle</a></td>
         </tr>

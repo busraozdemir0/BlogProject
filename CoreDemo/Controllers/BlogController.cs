@@ -179,6 +179,39 @@ namespace CoreDemo.Controllers
             }
             return RedirectToAction("BlogListByWriter");
         }
+        public IActionResult BlogBegen(int id)
+        {
+            var user = User.Identity.IsAuthenticated;
+            if (user == true)
+            {
+                Context context = new Context();
+                var blog = context.Blogs.Find(id);
+
+                Blog begeni = new Blog
+                {
+                    BlogID = blog.BlogID,
+                    BlogTitle = blog.BlogTitle,
+                    BlogContent = blog.BlogContent,
+                    BlogImageYol=blog.BlogImageYol,
+                    BlogImage=blog.BlogImage,
+                    BlogCreateDate = blog.BlogCreateDate,
+                    BlogStatus = blog.BlogStatus,
+                    Begeni_Sayisi = blog.Begeni_Sayisi + 1,
+                    CategoryID = blog.CategoryID,
+                    Category = blog.Category,
+                    AppUserId = blog.AppUserId,
+                    AppUser = blog.AppUser
+
+                };
+                c.Blogs.Update(begeni);
+                c.SaveChanges();
+                return RedirectToAction("BlogReadAll", new { id = id });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
 
     }
 }
