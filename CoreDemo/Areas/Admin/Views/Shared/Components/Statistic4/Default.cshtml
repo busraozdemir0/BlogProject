@@ -1,13 +1,13 @@
 ﻿<div class="row">
     <div class="col-lg-4">
-        <div class="widget-head-color-box navy-bg p-xs text-center">
-            <div class="m-b-md">
+        <div class="widget-head-color-box navy-bg p-sm text-center">
+            <div class="m-b-sm">
                 <h2 class="font-bold no-margins">
                     @ViewBag.ad
                 </h2>
-                <small>WeBlog Kurucusu</small>
+               
             </div>
-            <img src="~/WriterImageFiles/@ViewBag.v2" style="width:85px; height:100px" class="rounded-circle circle-border m-b-md" alt="profile">
+            <img src="~/WriterImageFiles/@ViewBag.v2" style="width:85px; height:100px" class="rounded-circle circle-border m-b-sm" alt="profile">
             @*<div>
                 <span>100 Tweets</span> |
                 <span>350 Takip Edilen</span> |
@@ -43,22 +43,22 @@
     <div class="col-lg-4">
         <div class="widget lazur-bg p-xl">
 
-            <h2>
+            <h2 class="font-bold">
                 @ViewBag.ad
             </h2>
-            <ul class="list-unstyled m-t-md">
+            <ul class="list-unstyled m-t-xl">
                 <li>
-                    <span class="fa fa-envelope m-r-xs"></span>
+                    <span class="fa fa-envelope m-r-sm"></span>
                     <label>Email:</label>
                     @ViewBag.mail
                 </li>
                 <li>
-                    <span class="fa fa-home m-r-xs"></span>
+                    <span class="fa fa-home m-r-sm"></span>
                     <label>Adres:</label>
                     @ViewBag.adres
                 </li>
                 <li>
-                    <span class="fa fa-phone m-r-xs"></span>
+                    <span class="fa fa-phone m-r-sm"></span>
                     <label>Telefon:</label>
                     @ViewBag.telefon
                 </li>
@@ -79,10 +79,10 @@
     <div class="col-lg-4">
         <div class="widget yellow-bg p-xl text-center">
             <div class="m-b-lg">
-                <i class="fa fa-thumbs-up fa-4x"></i>
-                <h1 class="m-sm">53</h1>
+                <i class="fa fa-thumbs-up fa-5x"></i>
+                <h1 class="m-md">@ViewBag.blogBegeni</h1>
                 <h3 class="font-bold no-margins">
-                    Beğeni
+                   Son Blogun Beğeni Sayısı
                 </h3>
                 @*<small>amount</small>*@
             </div>

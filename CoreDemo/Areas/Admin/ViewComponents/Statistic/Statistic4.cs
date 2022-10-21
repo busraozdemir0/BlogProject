@@ -20,6 +20,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
             ViewBag.mail=c.Users.Where(x => x.Id == userId).Select(z => z.Email).FirstOrDefault();
             ViewBag.adres = c.Addresses.Select(y => y.Adres).FirstOrDefault();
             ViewBag.telefon = c.Addresses.Select(y => y.TelNo).FirstOrDefault();
+            ViewBag.blogBegeni= c.Blogs.OrderByDescending(y=>y.BlogID).Take(1).Select(x => x.Begeni_Sayisi).FirstOrDefault();
             return View();
         }
     }

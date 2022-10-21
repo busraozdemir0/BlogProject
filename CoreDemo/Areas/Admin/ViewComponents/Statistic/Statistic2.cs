@@ -14,6 +14,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
         {
             ViewBag.v1 = c.Blogs.OrderByDescending(x=>x.BlogID).Select(x=>x.BlogTitle).Take(1).FirstOrDefault();
             ViewBag.v3 = c.Comments.Count();
+            ViewBag.kategoriSayisi = c.Categories.Count();
             return View();
         }
     }
