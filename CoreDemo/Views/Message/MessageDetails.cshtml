@@ -6,13 +6,16 @@
 
 <h1>Mesaj Detay Sayfası</h1>
 <br />
-@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control", disabled = "disabled", hidden="true"}) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
+@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control", disabled = "disabled", hidden = "true" }) @*disabled ile textboxları değiştirilemez duruma getiriyoruz.*@
+<br />
+<label class="font-weight-bold text-muted">Alıcı: <i class="fa-solid fa-angles-right"></i> @Model.ReceiverUserEmail</label>
+<br />
 <br />
 @Html.Label("Mesaj Başlığı")
-@Html.TextBoxFor(x => x.Subject, new { @class = "form-control" , disabled = "disabled" })
+@Html.TextBoxFor(x => x.Subject, new { @class = "form-control", disabled = "disabled" })
 <br />
 @Html.Label("Mesaj İçeriği")
-@Html.TextAreaFor(x => x.MessageDetails,20,3, new { @class = "form-control", disabled = "disabled" })
+@Html.TextAreaFor(x => x.MessageDetails, 20, 3, new { @class = "form-control", disabled = "disabled" })
 <br />
 <a href="/Message/InBox/" class="btn btn-success">Mesajlara Dön</a>
 

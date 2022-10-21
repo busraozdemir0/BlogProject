@@ -80,7 +80,8 @@ namespace CoreDemo.Controllers
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userID = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
             p.SenderUserId = userID;
-
+            p.ReceiverUserId = c.Users.Where(x => x.Email == p.ReceiverUserEmail).Select(y => y.Id).FirstOrDefault();
+            p.ReceiverUserEmail = c.Users.Where(x => x.Email == p.ReceiverUserEmail).Select(y => y.Email).FirstOrDefault();
             p.MessageStatus = true;
             p.MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             mm.TAdd(p);

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221006185524_mig_message")]
-    partial class mig_message
+    [Migration("20221021083032_mig_message2_tableupdate")]
+    partial class mig_message2_tableupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -416,30 +416,26 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("MessageStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ReceiverID")
+                    b.Property<string>("ReceiverUserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReceiverUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SenderID")
+                    b.Property<string>("SenderUserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SenderUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("WriterID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WriterID1")
-                        .HasColumnType("int");
-
                     b.HasKey("MessageID");
 
-                    b.HasIndex("ReceiverID");
+                    b.HasIndex("ReceiverUserId");
 
-                    b.HasIndex("SenderID");
-
-                    b.HasIndex("WriterID");
-
-                    b.HasIndex("WriterID1");
+                    b.HasIndex("SenderUserId");
 
                     b.ToTable("Message2s");
                 });
@@ -481,10 +477,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("NotificationStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("NotificationType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NotificationTypeSymbol")
+                    b.Property<string>("NotificationTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NotificationID");
@@ -689,20 +682,14 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.AppUser", "ReceiverUser")
-                        .WithMany("UserReceiver")
-                        .HasForeignKey("ReceiverID");
+                        .WithMany("ReceiverUser")
+                        .HasForeignKey("ReceiverUserId")
+                        .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.AppUser", "SenderUser")
-                        .WithMany("UserSender")
-                        .HasForeignKey("SenderID");
-
-                    b.HasOne("EntityLayer.Concrete.Writer", null)
-                        .WithMany("WriterReceiver")
-                        .HasForeignKey("WriterID");
-
-                    b.HasOne("EntityLayer.Concrete.Writer", null)
-                        .WithMany("WriterSender")
-                        .HasForeignKey("WriterID1");
+                        .WithMany("SenderUser")
+                        .HasForeignKey("SenderUserId")
+                        .IsRequired();
 
                     b.Navigation("ReceiverUser");
 
@@ -762,9 +749,9 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.AppUser", b =>
                 {
-                    b.Navigation("UserReceiver");
+                    b.Navigation("ReceiverUser");
 
-                    b.Navigation("UserSender");
+                    b.Navigation("SenderUser");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
@@ -782,13 +769,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("AwayMatchs");
 
                     b.Navigation("HomeMatchs");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
-                {
-                    b.Navigation("WriterReceiver");
-
-                    b.Navigation("WriterSender");
                 });
 #pragma warning restore 612, 618
         }

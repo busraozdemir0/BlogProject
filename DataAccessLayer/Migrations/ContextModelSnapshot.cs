@@ -398,7 +398,45 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Messages");
                 });
 
-           
+            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
+                {
+                    b.Property<int>("MessageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("MessageDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MessageDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MessageStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ReceiverUserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReceiverUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderUserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SenderUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageID");
+
+                    b.HasIndex("ReceiverUserId");
+
+                    b.HasIndex("SenderUserId");
+
+                    b.ToTable("Message2s");
+                });
 
             modelBuilder.Entity("EntityLayer.Concrete.NewsLetter", b =>
                 {
@@ -639,7 +677,22 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("HomeTeam");
                 });
 
-            
+            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.AppUser", "ReceiverUser")
+                        .WithMany("ReceiverUser")
+                        .HasForeignKey("ReceiverUserId")
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.AppUser", "SenderUser")
+                        .WithMany("SenderUser")
+                        .HasForeignKey("SenderUserId")
+                        .IsRequired();
+
+                    b.Navigation("ReceiverUser");
+
+                    b.Navigation("SenderUser");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -694,9 +747,9 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.AppUser", b =>
                 {
-                    b.Navigation("UserReceiver");
+                    b.Navigation("ReceiverUser");
 
-                    b.Navigation("UserSender");
+                    b.Navigation("SenderUser");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
