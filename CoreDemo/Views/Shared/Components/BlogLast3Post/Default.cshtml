@@ -3,7 +3,7 @@
 
 <div class="tech-btm">
     <h3>Son Postlar</h3>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(x => x.BlogStatus == true))
     {
         <div class="blog-grids row mb-3">
             <div class="col-md-5 blog-grid-left">

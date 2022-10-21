@@ -179,6 +179,22 @@ namespace CoreDemo.Controllers
             }
             return RedirectToAction("BlogListByWriter");
         }
+        public IActionResult BlogAktifYap(int id)
+        {
+            var blogId=c.Blogs.Find(id);
+            blogId.BlogStatus = true;
+            c.SaveChanges();
+            return RedirectToAction("BlogListByWriter");
+
+        }
+        public IActionResult BlogPasifYap(int id)
+        {
+            var blogId = c.Blogs.Find(id);
+            blogId.BlogStatus = false;
+            c.SaveChanges();
+            return RedirectToAction("BlogListByWriter");
+
+        }
         public IActionResult BlogBegen(int id)
         {
             var user = User.Identity.IsAuthenticated;

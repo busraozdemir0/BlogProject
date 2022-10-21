@@ -13,7 +13,7 @@
             <!--left-->
             <div class="left-blog-info-w3layouts-agileits text-left">
                 <div class="row">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Where(x=>x.BlogStatus==true))
                     {
                         <div class="col-lg-4 card">
                             <a href="/Blog/BlogReadAll/@item.BlogID">
@@ -22,7 +22,7 @@
                             <div class="card-body">
                                 <ul class="blog-icons my-4">
                                     <li>
-                                        <a href="#">
+                                        <a href="/Blog/BlogReadAll/@item.BlogID">
                                             <i class="far fa-calendar-alt"></i>@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
                                         </a>
                                     </li>

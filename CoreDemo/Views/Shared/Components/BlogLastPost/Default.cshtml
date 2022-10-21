@@ -2,7 +2,7 @@
 @model List<Blog>
 <div class="single-gd tech-btm">
     <h4>Son Eklenen Post</h4>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(x => x.BlogStatus == true))
     {
 
         <div class="blog-grids">
