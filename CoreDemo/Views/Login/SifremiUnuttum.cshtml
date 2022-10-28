@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "SifremiUnuttum";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+<div class="body">
+    <div role="main" class="main shop py-4">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
+                    <h2 class="font-weight-bold text-5 mb-3 mt-5">Şifremi Unuttum</h2>
+                    <form id="frmSignIn" method="post" class="needs-validation">
+                        <div class="row mb-2" >
+                            <div class="form-group col">
+                                <label class="form-label text-color-dark text-3"> Mail Adresi Girin <span class="text-color-danger">*</span></label>
+                                <input type="email" value="" name="Mail" class="form-control form-control-lg text-4" required>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="form-group col">
+                                <button type="submit" class="btn btn-dark btn-modern w-100 text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Yükleniyor...">Onay Kodu Gönder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

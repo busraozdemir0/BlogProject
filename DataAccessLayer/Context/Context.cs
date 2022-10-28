@@ -66,5 +66,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Message2> Message2s { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<SifremiUnuttum> SifremiUnuttums { get; set; }
+        public DbSet<SifremiUnuttumMailTut> SifremiUnuttumMailTuts { get; set; }
     }
 }
