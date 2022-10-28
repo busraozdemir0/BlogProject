@@ -19,6 +19,10 @@
                     <input hidden type="text" name="AdresId" value="@Model.AdresId" class="form-control" />
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputName1">Adres Başlığı</label>
+                    <input type="text" name="AdresTitle" value="@Model.AdresTitle" class="form-control" disabled />
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail3">Adres</label>
                     @Html.TextAreaFor(x => x.Adres, 5, 2, new { @class = "form-control", disabled = "disabled" })
 

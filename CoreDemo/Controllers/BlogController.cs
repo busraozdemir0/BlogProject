@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using CoreDemo.Models;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -31,8 +32,8 @@ namespace CoreDemo.Controllers
         public IActionResult Index()
         {
             var userName = User.Identity.Name;
-            var userId= c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
-            var adSoyad= c.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            var userId = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var adSoyad = c.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
             ViewBag.user = adSoyad;
             var values = bm.GetBlogListWithCategory();
             return View(values);
@@ -46,7 +47,7 @@ namespace CoreDemo.Controllers
             var userId = context.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
             var adSoyad = context.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
             ViewBag.user = adSoyad;
-            var comment = c.Comments.Where(x=>x.BlogID==id).Count().ToString();
+            var comment = c.Comments.Where(x => x.BlogID == id).Count().ToString();
             ViewBag.yorumSayisi = comment;
 
             var values = bm.GetBlogByID(id);
@@ -158,7 +159,7 @@ namespace CoreDemo.Controllers
         [Authorize(Roles = "Admin,Yazar")]
         [HttpPost]
         public async Task<IActionResult> EditBlog(Blog p)
-        { 
+        {
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userid = c.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
@@ -181,7 +182,7 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogAktifYap(int id)
         {
-            var blogId=c.Blogs.Find(id);
+            var blogId = c.Blogs.Find(id);
             blogId.BlogStatus = true;
             c.SaveChanges();
             return RedirectToAction("BlogListByWriter");
@@ -208,8 +209,8 @@ namespace CoreDemo.Controllers
                     BlogID = blog.BlogID,
                     BlogTitle = blog.BlogTitle,
                     BlogContent = blog.BlogContent,
-                    BlogImageYol=blog.BlogImageYol,
-                    BlogImage=blog.BlogImage,
+                    BlogImageYol = blog.BlogImageYol,
+                    BlogImage = blog.BlogImage,
                     BlogCreateDate = blog.BlogCreateDate,
                     BlogStatus = blog.BlogStatus,
                     Begeni_Sayisi = blog.Begeni_Sayisi + 1,
@@ -227,6 +228,26 @@ namespace CoreDemo.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+        }
+        public IActionResult Arama(string q)
+        {
+            Context context = new Context();
+            var viewModel = new AramaModel();
+            viewModel.AramaKey = q;
+
+            if (!string.IsNullOrEmpty(q)) // yöntemi ile string değişkeninin boş yada null olup olmadığı kontrol edilir
+            {
+                var blog = context.Blogs.Where(x => x.BlogTitle!.Contains(q)).ToList();
+                var hakkimizda = context.Abouts.Where(x => x.AboutTitle!.Contains(q)).ToList();
+                var iletisim = context.Addresses.Where(x => x.AdresTitle!.Contains(q)).ToList();
+
+                viewModel.Blogs = blog;
+                viewModel.Abouts = hakkimizda;
+                viewModel.Addresses = iletisim;
+
+            }
+
+            return View(viewModel);
         }
 
     }

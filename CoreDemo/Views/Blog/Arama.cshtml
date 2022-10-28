@@ -1,0 +1,78 @@
+﻿@model CoreDemo.Models.AramaModel
+@{
+    ViewData["Title"] = "Arama";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+<div role="main" class="main" style="background-color:#fff; margin-bottom:50px">
+    <hr class="m-0">
+    <div class="container col-md-8 py-5 mt-3">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="font-weight-normal text-6 mb-0">Arama sonuçları listeleniyor</h2>
+            </div>
+        </div>
+        <hr class="my-4" style="margin-left:-15px">
+
+        <div class="row">
+            <div class="col-md-12 " style="margin-bottom:80px" ">
+                @foreach (var item in Model.Blogs)
+                {
+
+                    <ul class="simple-post-list m-0">
+                        <li>
+                            <div class="post-info">
+                                <a href="/Blog/BlogReadAll/@item.BlogID ">@Html.Raw(@item.BlogTitle)</a>
+                                <div class="post-meta">
+                                    @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="col pt-2 mt-1">
+                        <hr class="my-4" style="margin-left:-15px">
+                    </div>
+                }
+                @foreach (var item in Model.Abouts)
+                {
+
+                    <ul class="simple-post-list m-0">
+                        <li>
+                            <div class="post-info">
+                                <a href="/About/Index/">@Html.Raw(@item.AboutTitle)</a>
+                                <div class="post-meta">
+                                    @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                @foreach (var item in Model.Addresses)
+                {
+
+                    <ul class="simple-post-list m-0">
+                        <li>
+                            <div class="post-info">
+                                <a href="/Contact/Index/">@Html.Raw(@item.AdresTitle)</a>
+                                <div class="post-meta">
+                                    @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+        @*<ul class="pagination float-right">
+            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+        </ul>*@
+
+    </div>
+</div>
+
+

@@ -14,6 +14,7 @@ using MimeKit;
 using MimeKit.Text;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
@@ -122,6 +123,7 @@ namespace CoreDemo.Controllers
 
             if (kisiMail == sifre.Mail)
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 var email = new MimeMessage();
                 email.From.Add(MailboxAddress.Parse("swggerx@gmail.com"));
                 email.To.Add(MailboxAddress.Parse(kisiMail));
@@ -130,7 +132,7 @@ namespace CoreDemo.Controllers
 
                 //send eMail
                 using var smtp = new SmtpClient();
-                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.None);
                 smtp.Authenticate("swggerx@gmail.com", "tltmlfchqcjelvtx");
                 smtp.Send(email);
                 smtp.Disconnect(true);

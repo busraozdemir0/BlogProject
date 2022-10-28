@@ -11,6 +11,7 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int AdresId { get; set; }
+        public string AdresTitle { get; set; }
         public string Adres { get; set; }
         public string Mail { get; set; }
         public string TelNo { get; set; }

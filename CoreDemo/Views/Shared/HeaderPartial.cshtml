@@ -27,8 +27,8 @@
                 </li>
 
             </ul>
-            <form action="#" method="post" class="form-inline my-2 my-lg-0 header-search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Aranacak kelime..." name="Search" required="">
+            <form action="@Url.Action("Arama","Blog")" method="get" class="form-inline my-2 my-lg-0 header-search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Aranacak kelime..." name="q" required="">
                 <button class="btn btn1 my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>

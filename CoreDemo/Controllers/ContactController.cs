@@ -22,6 +22,8 @@ namespace CoreDemo.Controllers
             var userName = User.Identity.Name;
             var userId = context.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
             var adSoyad = context.Users.Where(x => x.Id == userId).Select(y => y.NameSurname).FirstOrDefault();
+            var baslik = context.Addresses.Select(y => y.AdresTitle).FirstOrDefault();
+            ViewBag.baslik = baslik;
             ViewBag.user = adSoyad;
             return View();
         }

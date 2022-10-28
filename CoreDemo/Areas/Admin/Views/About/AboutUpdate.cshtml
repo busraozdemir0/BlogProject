@@ -16,6 +16,10 @@
                     <input hidden type="text" name="AboutID" value="@Model.AboutID" class="form-control" />
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputName1">Hakkımızda Başlık</label>
+                    <input type="text" name="AboutTitle" value="@Model.AboutTitle" class="form-control" />
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail3">Hakkımızda İçerik</label>
                     @Html.TextAreaFor(x => x.AboutDetails, 15, 3, new { @class = "form-control" })
                 </div>

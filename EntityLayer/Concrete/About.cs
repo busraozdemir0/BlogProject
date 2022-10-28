@@ -13,6 +13,7 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int AboutID { get; set; }
+        public string AboutTitle { get; set; }
         public string AboutDetails { get; set; }
         public string AboutImageYol { get; set; }
         [NotMapped]
