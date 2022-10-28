@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<NewsLetter>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Haber Bültenine Abone Olan Kullanıcılar</h1>
+<br />
+<table class="table table-hover">
+    <tr>
+        <th hidden>ID</th>
+        <th>Mail</th>
+        <th>Mail Gönder</th>
+        <th>Sil</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th hidden>@item.MailID </th>
+            <td>@item.Mail</td>
+            <td><a href="mailto:@item.Mail" class="btn btn-outline-primary">Mail Gönder</a></td>
+            <td>@Html.ActionLink("Sil", "UyeSil", new { id = item.MailID}, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+
+        </tr>
+    }
+</table>
+
+
+
+
+

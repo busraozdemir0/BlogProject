@@ -24,7 +24,7 @@ namespace CoreDemo.Controllers
         {
             p.MailStatus = true;
             nm.AddNewsLetter(p);
-            Response.Redirect("/BlogReadAll/Index", true); //abone olunca başka sayfaya gitmemesi için
+            Response.Redirect("/Blog/Index", true); //abone olunca başka sayfaya gitmemesi için
             return PartialView();
         }
     }
