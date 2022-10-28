@@ -36,18 +36,21 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
                 <div class="search-field d-none d-md-block">
-                    <form class="d-flex align-items-center h-100" action="#">
-                        @*<div class="input-group">
+                    <form class="d-flex align-items-center h-100" action="@Url.Action("Arama","Writer")">
+                        <div class="input-group">
                             <div class="input-group-prepend bg-transparent">
                                 <i class="input-group-text border-0 mdi mdi-magnify"></i>
                             </div>
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Aranacak Kelimeyi Giriniz...">
-                        </div>*@
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Aranacak Kelimeyi Giriniz..." name="q">
+                            <button class="btn btn1 my-2 my-sm-0" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="/Writer/WriterEditProfile/" data-toggle="dropdown" aria-expanded="false">
                             <div class="nav-profile-img">
                                 <img src="~/WriterImageFiles/@ViewBag.yol" alt="">
                                 <span class="availability-status online"></span>

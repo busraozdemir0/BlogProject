@@ -1,13 +1,13 @@
 ﻿@model CoreDemo.Models.AramaModel
 @{
     ViewData["Title"] = "Arama";
-    Layout = "~/Views/Shared/UserLayout.cshtml";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
 
 <div role="main" class="main" style="background-color:#fff; margin-bottom:50px">
     <hr class="m-0">
-    <div class="container col-md-8 py-5 mt-3">
+    <div class="container col-md-10 py-5 mt-3">
         <div class="row">
             <div class="col-md-8">
                 <h2 class="font-weight-normal text-6 mb-0">Arama sonuçları listeleniyor</h2>
@@ -23,7 +23,7 @@
                     <ul class="simple-post-list m-0">
                         <li>
                             <div class="post-info">
-                                <a href="/Blog/BlogReadAll/@item.BlogID ">@Html.Raw(@item.BlogTitle)</a>
+                                <a href="/Blog/BlogListByWriter ">@Html.Raw(@item.BlogTitle)</a>
                                 <div class="post-meta">
                                     @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
                                 </div>
@@ -34,13 +34,13 @@
                         <hr class="my-4" style="margin-left:-15px">
                     </div>
                 }
-                @foreach (var item in Model.Abouts)
+                @foreach (var item in Model.Message2s)
                 {
 
                     <ul class="simple-post-list m-0">
                         <li>
                             <div class="post-info">
-                                <a href="/About/Index/">@Html.Raw(@item.AboutTitle)</a>
+                                <a href="/Message/InBox/">@Html.Raw(@item.MessageDetails)</a>
                                 <div class="post-meta">
                                     @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
                                 </div>
@@ -48,13 +48,27 @@
                         </li>
                     </ul>
                 }
-                @foreach (var item in Model.Addresses)
+                @foreach (var item in Model.Notifications)
                 {
 
                     <ul class="simple-post-list m-0">
                         <li>
                             <div class="post-info">
-                                <a href="/Contact/Index/">@Html.Raw(@item.AdresTitle)</a>
+                                <a href="/Notification/AllNotification/">@Html.Raw(@item.NotificationTitle)</a>
+                                <div class="post-meta">
+                                    @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                @foreach (var item in Model.Categories)
+                {
+
+                    <ul class="simple-post-list m-0">
+                        <li>
+                            <div class="post-info">
+                                <a href="/Dashboard/Index/">@Html.Raw(@item.CategoryName)</a>
                                 <div class="post-meta">
                                     @*<span class="text-dark text-uppercase font-weight-semibold">@item.SurumKilavuz_BelgeTarihi.ToShortDateString()</span> | @Html.Raw(@item.SurumKilavuz_Aciklama)*@
                                 </div>
@@ -65,14 +79,13 @@
             </div>
         </div>
         @*<ul class="pagination float-right">
-            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-        </ul>*@
+                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+            </ul>*@
 
     </div>
 </div>
-
 

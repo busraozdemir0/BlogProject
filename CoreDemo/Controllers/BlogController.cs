@@ -64,6 +64,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.Id == userID).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
             return View(values);
         }
@@ -85,6 +86,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
 
             ViewBag.list = categoryvalues;
@@ -152,6 +154,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
 
             return View(blogvalue);

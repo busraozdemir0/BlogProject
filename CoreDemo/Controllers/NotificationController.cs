@@ -27,6 +27,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
             var values = nm.GetList();
             return View(values);
@@ -39,6 +40,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
 
             var notification = nm.TGetById(id);

@@ -91,6 +91,7 @@ namespace CoreDemo.Controllers
             model.about = wabout;
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imageyol;
 
             return View(model);
@@ -136,6 +137,35 @@ namespace CoreDemo.Controllers
 
             return RedirectToAction("Index", "Dashboard");
         }       
+        public IActionResult Arama(string q)
+        {
+            Context context = new Context();
+            var userName = User.Identity.Name;
+            var userId = context.Users.Where(x => x.UserName == userName).Select(y => y.Id).FirstOrDefault();
+            var nameSurname = context.Users.Where(x => x.UserName == userName).Select(y => y.NameSurname).FirstOrDefault();
+            var imagePath = context.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
+            ViewBag.adsoyad = nameSurname;
+            ViewBag.yol = imagePath;
+            ViewBag.isim = userName;
+            var viewModel = new AramaModel();
+            viewModel.AramaKey = q;
+
+            if (!string.IsNullOrEmpty(q))
+            {
+                var blog = context.Blogs.Where(x => x.BlogTitle!.Contains(q)).ToList();
+                var gelenkutusu = context.Message2s.Where(x => x.MessageDetails!.Contains(q)).ToList();
+                var bildirim = context.Notifications.Where(x => x.NotificationTitle!.Contains(q)).ToList();
+                var kategori = context.Categories.Where(x => x.CategoryName!.Contains(q)).ToList();
+
+                viewModel.Blogs = blog;
+                viewModel.Message2s = gelenkutusu;
+                viewModel.Notifications = bildirim;
+                viewModel.Categories = kategori;
+
+            }
+
+            return View(viewModel);
+        }
 
     }
 }

@@ -28,6 +28,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
             var values = mm.GetInboxListByWriter(userID);
             return View(values);
@@ -41,6 +42,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
             var values = mm.GetSendBoxListByWriter(userID);
             return View(values);
@@ -54,6 +56,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
 
             var value = mm.TGetById(id);            
@@ -69,6 +72,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.UserName == userName).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
 
             return View();

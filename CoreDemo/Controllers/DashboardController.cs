@@ -21,6 +21,7 @@ namespace CoreDemo.Controllers
             var imgyol = c.Users.Where(x => x.Id == userid).Select(y => y.ImagePath).FirstOrDefault();
 
             ViewBag.adsoyad = name;
+            ViewBag.isim = userName;
             ViewBag.yol = imgyol;
             ViewBag.v1 = c.Blogs.Count().ToString();
             ViewBag.v2 = c.Blogs.Where(x => x.AppUserId == userid).Count();
