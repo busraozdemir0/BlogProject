@@ -18,6 +18,8 @@ namespace CoreDemo.Models
         public List<Message2> Message2s { get; set; }
         public List<NewsLetter> NewsLetters { get; set; }
         public List<Notification> Notifications { get; set; }
+        public List<AppUser> Users { get; set; }
+        public List<AppRole> Roles { get; set; }
 
     }
 }
