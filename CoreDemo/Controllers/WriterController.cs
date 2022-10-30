@@ -20,7 +20,6 @@ namespace CoreDemo.Controllers
     [Authorize(Roles = "Admin,Yazar")]
     public class WriterController : Controller
     {
-        WriterManager wm = new WriterManager(new EfWriterRepository());
         UserManager userManager = new UserManager(new EfUserRepository());
         private readonly UserManager<AppUser> _userManager;
         private readonly IWebHostEnvironment _webHost;
