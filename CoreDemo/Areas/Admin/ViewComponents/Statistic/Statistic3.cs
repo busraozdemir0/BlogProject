@@ -17,7 +17,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
             ViewBag.blog = c.Blogs.Count();
             ViewBag.bildirim = c.Notifications.Count();
             ViewBag.iletisim = c.Message2s.Count();
-            ViewBag.yorum = c.Comments.Count();
+            ViewBag.abone = c.NewsLetters.Count();
            
 
             return View();

@@ -2,13 +2,9 @@
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
-                <div class="dropdown profile-element">
-                    <img alt="image" class="rounded-circle" style="width:60px; height:70px" src="~/WriterImageFiles/busra.jpg" />
-                    <a href="/Admin/Settings/AdminSettings/">
-                        <span class="block m-t-xs font-bold">Büşra Özdemir</span>
-                        <span class="text-muted text-xs block">Software Developer</span>
-                    </a>
-                </div>
+
+               @await Component.InvokeAsync("AdminProfile")
+
                 <div class="logo-element">
                     WB
                 </div>
