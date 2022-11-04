@@ -126,7 +126,9 @@ namespace CoreDemo.Controllers
         }
         static bool MySslCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            return true;
+            return true; //ssl hatası verdiğinden dolayı ssl'i geçmesi için true değer döndürmesini istedik
+
+
             // If there are no errors, then everything went smoothly.
             if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;
@@ -203,8 +205,8 @@ namespace CoreDemo.Controllers
             if (yeniSifre.Sifre == yeniSifre.SifreYeniden)
             {
                 Context context = new Context();
-                var kisimail = HttpContext.Session.GetString("Mail");
-                AppUser kisi = await _userManager.FindByNameAsync(kisimail);
+                var kisimail = HttpContext.Session.GetString("kisiMail");
+                AppUser kisi = await _userManager.FindByEmailAsync(kisimail);
                 kisi.PasswordHash = _userManager.PasswordHasher.HashPassword(kisi, yeniSifre.Sifre);
                 IdentityResult result = await _userManager.UpdateAsync(kisi);
                 return RedirectToRoute(new { action = "Index", controller = "Login" });
