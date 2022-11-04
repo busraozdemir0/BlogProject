@@ -67,15 +67,15 @@ namespace CoreDemo.Areas.Admin.Controllers
                 {
                     await model.image.CopyToAsync(filestream);
                 }
+
                 AppUser appUser = new AppUser
                 {
                     Id = model.userId,
                     Image = model.image,
                     ImagePath = model.image_yol,
                     UserAbout = model.about,
-                    PasswordHash=model.password                    
+                    PasswordHash = model.password
                 };
-
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
                 user.NameSurname = model.namesurname;
                 user.UserName = model.username;
@@ -83,6 +83,7 @@ namespace CoreDemo.Areas.Admin.Controllers
                 user.Email = model.mail;
                 user.UserAbout = model.about;
                 user.ImagePath = model.image_yol;
+
                 IdentityResult result = await _userManager.UpdateAsync(user);
 
             }

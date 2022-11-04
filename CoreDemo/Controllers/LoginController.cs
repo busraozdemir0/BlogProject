@@ -176,6 +176,7 @@ namespace CoreDemo.Controllers
 
             return false;
         }
+       
         public IActionResult OnayKodu()
         {
             return View();
