@@ -13,7 +13,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-G8IS3SP\\SQLEXPRESS;database=CoreBlog; integrated security=true;charset=UTF8;");
+            optionsBuilder.UseSqlServer("server=DESKTOP-G8IS3SP\\SQLEXPRESS;database=CoreBlog; integrated security=true;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
