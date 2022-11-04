@@ -42,7 +42,7 @@
                                     <th>Kullanıcı</th>
                                     <th>Başlık</th>
                                     <th>Blog</th>
-                                    <th>Puan</th>
+                                    @*<th>Puan</th>*@
                                     <th>Tarih</th>
                                     <th>Sil</th>
                                     <th>Güncelle</th>
@@ -56,7 +56,7 @@
                                         <td>@item.CommentUserName</td>
                                         <td>@item.CommentTitle</td>
                                         <td>@item.Blog.BlogTitle</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i>@item.BlogScore </td>
+                                        @*<td class="text-navy"> <i class="fa fa-level-up"></i>@item.BlogScore </td>*@
                                         <td>@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</td>
                                        <td><a href="/Admin/AdminComment/CommentDelete/@item.CommentID" class="btn btn-outline-danger">Sil</a></td>
                                        <td><a href="/Admin/AdminComment/CommentUpdate/@item.CommentID" class="btn btn-outline-success">Güncelle</a></td>

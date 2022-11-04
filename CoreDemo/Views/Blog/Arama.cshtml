@@ -16,6 +16,13 @@
         <hr class="my-4" style="margin-left:-15px">
 
         <div class="row">
+            @if(Model.Blogs.Count==0 && Model.Abouts.Count == 0 && Model.Addresses.Count == 0)
+            {
+                <h1>veri yok</h1>
+            }
+            else
+            {
+
             <div class="col-md-12 " style="margin-bottom:80px">
                 @foreach (var item in Model.Blogs)
                 {
@@ -63,6 +70,8 @@
                     </ul>
                 }
             </div>
+
+            }
         </div>
         @*<ul class="pagination float-right">
             <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>

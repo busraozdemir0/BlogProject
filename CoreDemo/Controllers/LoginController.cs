@@ -15,6 +15,8 @@ using MimeKit.Text;
 using System;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
@@ -46,7 +48,7 @@ namespace CoreDemo.Controllers
                 {
                     var name = context.Users.Where(x => x.UserName == p.username).Select(y => y.NameSurname).FirstOrDefault();
                     var userId = context.Users.Where(x => x.NameSurname == name).Select(y => y.Id).FirstOrDefault();
-                   
+
                     var userRoleId = context.UserRoles.Where(x => x.UserId == userId).Select(y => y.RoleId).FirstOrDefault();
                     var roleType = context.Roles.Where(x => x.Id == userRoleId).Select(y => y.RolType).FirstOrDefault();
 
@@ -88,83 +90,107 @@ namespace CoreDemo.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SifremiUnuttum(SifremiUnuttum sifre)
+        public IActionResult SifremiUnuttum(SifremiUnuttumDto dto)
         {
-            Context context = new Context();
-            var kisiMail = context.Users.Where(x => x.Email == sifre.Mail).Select(y => y.Email).FirstOrDefault();
-            var kisiId = context.Users.Where(x => x.Email == kisiMail).Select(y => y.Id).FirstOrDefault();
-
-            var kontrol = context.SifremiUnuttums.Where(x => kisiMail.Contains(x.Mail)).FirstOrDefault();
-            if (kontrol != null)
+            using (var context = new Context())
             {
-                var kisi = context.SifremiUnuttums.Where(x => x.Mail == kisiMail).Select(y => y.Id).FirstOrDefault();
-                var kisibul = context.SifremiUnuttums.Find(kisi);
-                context.SifremiUnuttums.Remove(kisibul); //Eğer aynı kişi tekrar şifremi unuttum talebinde bulunuyorsa sifremiunuttum tablosunda maili olacağı için o kaydı silip sonraki adımlarda tekrar ekliyoruz.
-                context.SaveChanges();
+                var kisiMail = context.Users.Where(x => x.Email == dto.Mail).Select(y => y.Email).FirstOrDefault().ToString();
+                HttpContext.Session.SetString("kisiMail", kisiMail);
+                if (kisiMail != null)
+                {
+                    Random random = new Random();
+                    var sayi = random.Next(1000, 9999).ToString();
+                    HttpContext.Session.SetString("OnayKodu", sayi);
+                    var eMail = new MimeMessage();
+                    eMail.From.Add(MailboxAddress.Parse("uiswagger@gmail.com"));
+                    eMail.To.Add(MailboxAddress.Parse(kisiMail));
+                    eMail.Subject = "Onay Kodu";
+                    eMail.Body = new TextPart(TextFormat.Plain) { Text = sayi };
 
-                Random random = new Random();
-                var sayi = random.Next(1000, 9999);
-                sifre.RandomKod = sayi.ToString();
-                sifre.Tarih = DateTime.Now;
-                sifre.AppUserId = kisiId;
-                context.SifremiUnuttums.Add(sifre);
-                context.SaveChanges();
-            }
-            else
-            {
-                Random random = new Random();
-                var sayi = random.Next(1000, 9999);
-                sifre.RandomKod = sayi.ToString();
-                sifre.Tarih = DateTime.Now;
-                sifre.AppUserId = kisiId;
-                context.SifremiUnuttums.Add(sifre);
-                context.SaveChanges();
-            }
+                    //send eMail
+                    using var smtp = new SmtpClient();
+                    smtp.ServerCertificateValidationCallback = MySslCertificateValidationCallback;
+                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    smtp.Authenticate("uiswagger@gmail.com", "ttwlzodhwqhpbpjy");
+                    smtp.Send(eMail);
+                    smtp.Disconnect(true);
 
-            if (kisiMail == sifre.Mail)
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("swggerx@gmail.com"));
-                email.To.Add(MailboxAddress.Parse(kisiMail));
-                email.Subject = "Onay Kodu";
-                email.Body = new TextPart(TextFormat.Plain) { Text = sifre.RandomKod };
-
-                //send eMail
-                using var smtp = new SmtpClient();
-                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.None);
-                smtp.Authenticate("swggerx@gmail.com", "tltmlfchqcjelvtx");
-                smtp.Send(email);
-                smtp.Disconnect(true);
+                    return RedirectToAction("OnayKodu", "Login");
+                }
+                else
+                {
+                    return View();
+                }
             }
 
-            SifremiUnuttumMailTut tut = new SifremiUnuttumMailTut();
-            tut.Mail = sifre.Mail;
-            tut.SifremiUnuttumId = sifre.Id;
-            context.SifremiUnuttumMailTuts.Add(tut);
-            context.SaveChanges();
-            HttpContext.Session.SetString("Mail", kisiMail);
-            return RedirectToAction("OnayKodu", "Login");
+        }
+        static bool MySslCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+            // If there are no errors, then everything went smoothly.
+            if (sslPolicyErrors == SslPolicyErrors.None)
+                return true;
 
+            // Note: MailKit will always pass the host name string as the `sender` argument.
+            var host = (string)sender;
+
+            if ((sslPolicyErrors & SslPolicyErrors.RemoteCertificateNotAvailable) != 0)
+            {
+                // This means that the remote certificate is unavailable. Notify the user and return false.
+                Console.WriteLine("The SSL certificate was not available for {0}", host);
+                return false;
+            }
+
+            if ((sslPolicyErrors & SslPolicyErrors.RemoteCertificateNameMismatch) != 0)
+            {
+                // This means that the server's SSL certificate did not match the host name that we are trying to connect to.
+                var certificate2 = certificate as X509Certificate2;
+                var cn = certificate2 != null ? certificate2.GetNameInfo(X509NameType.SimpleName, false) : certificate.Subject;
+
+                Console.WriteLine("The Common Name for the SSL certificate did not match {0}. Instead, it was {1}.", host, cn);
+                return false;
+            }
+
+            // The only other errors left are chain errors.
+            Console.WriteLine("The SSL certificate for the server could not be validated for the following reasons:");
+
+            // The first element's certificate will be the server's SSL certificate (and will match the `certificate` argument)
+            // while the last element in the chain will typically either be the Root Certificate Authority's certificate -or- it
+            // will be a non-authoritative self-signed certificate that the server admin created.
+            foreach (var element in chain.ChainElements)
+            {
+                // Each element in the chain will have its own status list. If the status list is empty, it means that the
+                // certificate itself did not contain any errors.
+                if (element.ChainElementStatus.Length == 0)
+                    continue;
+
+                Console.WriteLine("\u2022 {0}", element.Certificate.Subject);
+                foreach (var error in element.ChainElementStatus)
+                {
+                    // `error.StatusInformation` contains a human-readable error string while `error.Status` is the corresponding enum value.
+                    Console.WriteLine("\t\u2022 {0}", error.StatusInformation);
+                }
+            }
+
+            return false;
         }
         public IActionResult OnayKodu()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult OnayKodu(OnayKoduDto onay)
+        public IActionResult OnayKodu(SifremiUnuttumDto onay)
         {
-            Context context = new Context();
-            var kod = onay.OnayKodu;
-            var kisiOnayEslesme = context.SifremiUnuttums.Where(x => kod.Contains(x.RandomKod)).FirstOrDefault().ToString();
-            if (true)
+            var kod = HttpContext.Session.GetString("OnayKodu");
+            if (kod == onay.OnayKodu)
             {
                 return RedirectToAction("YeniSifre", "Login");
             }
             else
             {
-                return View();
+                ViewBag.hata = "Onay Kodu Hatalı";
             }
+            return View();
 
         }
         public IActionResult YeniSifre()
@@ -172,25 +198,22 @@ namespace CoreDemo.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> YeniSifre(YeniSifreDto yeniSifre)
+        public async Task<IActionResult> YeniSifre(SifremiUnuttumDto yeniSifre)
         {
-            Context context = new Context();
-            var mail = HttpContext.Session.GetString("Mail");
-            var userName = context.Users.Where(x => x.Email == mail).Select(y => y.UserName).FirstOrDefault();
-            AppUser kisi = await _userManager.FindByNameAsync(userName);
-
-            if(yeniSifre.Sifre==yeniSifre.SifreYeniden)
+            if (yeniSifre.Sifre == yeniSifre.SifreYeniden)
             {
+                Context context = new Context();
+                var kisimail = HttpContext.Session.GetString("Mail");
+                AppUser kisi = await _userManager.FindByNameAsync(kisimail);
                 kisi.PasswordHash = _userManager.PasswordHasher.HashPassword(kisi, yeniSifre.Sifre);
                 IdentityResult result = await _userManager.UpdateAsync(kisi);
                 return RedirectToRoute(new { action = "Index", controller = "Login" });
-                //return RedirectToRoute(new { action = "Index", controller = "Login",area="Admin" });
             }
             else
             {
-                ViewBag.HataMesaji = "Şifreler Uyuşmuyor";
+                ViewBag.hata = "Şifreler Uyuşmuyor!";
                 return View();
-            }          
+            }
         }
     }
 }

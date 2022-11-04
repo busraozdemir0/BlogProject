@@ -238,7 +238,7 @@ namespace CoreDemo.Controllers
             var viewModel = new AramaModel();
             viewModel.AramaKey = q;
 
-            if (!string.IsNullOrEmpty(q)) // yöntemi ile string değişkeninin boş yada null olup olmadığı kontrol edilir
+            if (!string.IsNullOrEmpty(q)) // yöntemi ile string değişkeninin null olup olmadığı kontrol edilir
             {
                 var blog = context.Blogs.Where(x => x.BlogTitle!.Contains(q)).ToList();
                 var hakkimizda = context.Abouts.Where(x => x.AboutTitle!.Contains(q)).ToList();
