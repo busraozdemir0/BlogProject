@@ -13,7 +13,7 @@
 
 ### İletişim Sayfası
 
-![Contact](https://github.com/busraozdemir0/BlogProject/blob/master/CoreDemo/wwwroot/WriterImageFiles/contact_page.png)
+![Contact](https://github.com/busraozdemir0/BlogProject/blob/master/CoreDemo/wwwroot/WriterImageFiles/contactPage.png)
 
 ### Ana Sayfa Footer Alanı
 
@@ -29,7 +29,7 @@
 
 ### Admin Paneli-Dashboard
 
-![Admin](https://github.com/busraozdemir0/BlogProject/blob/master/CoreDemo/wwwroot/WriterImageFiles/admin_dahsboard.png)
+![Admin](https://github.com/busraozdemir0/BlogProject/blob/master/CoreDemo/wwwroot/WriterImageFiles/adminDashboard.png)
 
 ### Admin Paneli-Bloglar Sayfası
 
