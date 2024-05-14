@@ -32,6 +32,8 @@ Asp.Net Core MVC 5.0 kullanılarak geliştirilen bu blog sitesi, Entity Framewor
 - Ana Sayfadaki bloglara yorum yapma, beğeni yapma
 - Panellerde ilgili CRUD işlemleri
 - Panellerde Profil ayarları sayfaları
+- Panellerde arama işlemleri
+- Şifremi Unuttum özelliği
 
 
 # Sitenin Görselleri
