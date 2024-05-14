@@ -1,4 +1,40 @@
 # Blog Sitesi Projesi
+## Projenin Genel Amacı
+###
+Kullanıcıların sisteme kayıt olup ilgi alanlarına göre bloglar paylaşabildiği, diğer kullanıcıların bu bloglara yorum yapabildiği ve aynı zamanda kendi aralarında iletişim kurabildikleri Admin ve Yazar paneli bulunan bir blog sitesidir.
+
+Asp.Net Core MVC 5.0 kullanılarak geliştirilen bu blog sitesi, Entity Framework ile birlikte Code First yaklaşımı kullanılarak veri tabanı yönetimi sağlamaktadır. N katmanlı mimari yapısı kullanılarak CRUD (Create, Read, Update, Delete) operasyonları daha etkili ve basit bir şekilde gerçekleştirilmektedir.
+###
+
+# Kullanılan Teknolojiler
+- Asp.Net Core 5.0
+- Entity Framework Code First
+- MSSQL Server
+- Html
+- Css
+- JavaScript
+- Bootstrap
+- Responsive Tasarım
+
+# Teknik Özellikler
+- MSSQL Server Veritabanı
+- N Katmanlı Mimari Yapısı
+- Repository Tasarım Deseni
+- Entity Framework Code First
+- LINQ
+  
+# Sitenin Temel Özellikleri
+- Yazar Paneli ve Admin Paneli
+- Identity kütüphanesi ile giriş yapma özelliği.
+- Rolleme ve yetkilendirme ile erişim kısıtlamaları
+- FluentValidation kütüphanesi yardımıyla doğrulamalar
+- Mesajlaşma özelliği
+- Ana Sayfadaki bloglara yorum yapma, beğeni yapma
+- Panellerde ilgili CRUD işlemleri
+- Panellerde Profil ayarları sayfaları
+
+
+# Sitenin Görselleri
 
 ### Ana Sayfa
 
